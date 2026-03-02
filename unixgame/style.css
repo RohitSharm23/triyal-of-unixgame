@@ -182,32 +182,10 @@
             opacity: 0.6;
         }
 
-        .shape:nth-child(1) { 
-            width: 80px; 
-            height: 80px; 
-            background: rgba(255,107,107,0.4); 
-            top: 20%; 
-            left: 10%; 
-            animation-delay: 0s; 
-        }
+       
         
-        .shape:nth-child(2) { 
-            width: 120px; 
-            height: 120px; 
-            background: rgba(78,205,196,0.4); 
-            top: 60%; 
-            right: 10%; 
-            animation-delay: 5s; 
-        }
-        
-        .shape:nth-child(3) { 
-            width: 60px; 
-            height: 60px; 
-            background: rgba(255,159,243,0.4); 
-            bottom: 20%; 
-            left: 20%; 
-            animation-delay: 10s; 
-        }
+      
+       
 
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
