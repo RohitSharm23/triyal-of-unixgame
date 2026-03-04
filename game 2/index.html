@@ -1,28 +1,48 @@
-<!-- Used to get images -->
-<base href="http://chessboardjs.com/" />
-<h3 class="board">
-Improved evaluation
-</h3>
-<div id="board" class="board"></div>
-<br>
-<div class="info">
-    Search depth:
-    <select id="search-depth">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3" selected>3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Game</title>
+    <!-- Chessboard.js CSS from GitHub -->
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/oakmac/chessboardjs/master/dist/chessboard-1.0.0.min.css">
+    <!-- Your game CSS -->
+    <link rel="stylesheet" href="game 2/style.css">
+</head>
+<body>
+    <!-- Used to get images -->
+    <base href="http://chessboardjs.com/" />
+    <h3 class="board">
+        Improved evaluation
+    </h3>
+    <div id="board" class="board"></div>
+    <br>
+    <div class="info">
+        Search depth:
+        <select id="search-depth">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
 
-    <br>
-    <span>Positions evaluated: <span id="position-count"></span></span>
-    <br>
-    <span>Time: <span id="time"></span></span>
-    <br>
-    <span>Positions/s: <span id="positions-per-s"></span> </span>
-    <br>
-    <br>
-    <div id="move-history" class="move-history">
+        <br>
+        <span>Positions evaluated: <span id="position-count"></span></span>
+        <br>
+        <span>Time: <span id="time"></span></span>
+        <br>
+        <span>Positions/s: <span id="positions-per-s"></span> </span>
+        <br>
+        <br>
+        <div id="move-history" class="move-history">
+        </div>
     </div>
-</div>
+
+    <!-- Chess.js and Chessboard.js from GitHub -->
+    <script src="https://raw.githubusercontent.com/jhlywa/chess.js/master/chess.min.js"></script>
+    <script src="https://raw.githubusercontent.com/oakmac/chessboardjs/master/dist/chessboard-1.0.0.min.js"></script>
+    <!-- Your game JS -->
+    <script src="game 2/scripts.js"></script>
+</body>
+</html>
