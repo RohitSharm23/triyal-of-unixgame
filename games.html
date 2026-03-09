@@ -139,7 +139,7 @@
             position: absolute;
             top: 0;
             left: 0;
-           
+            transform: scale(0.9);
         }
 
         .game-card:hover .game-image {
@@ -203,8 +203,8 @@
 
         @media (max-width: 480px) {
             .games-grid {
-                grid-template-rows: repeat(3, 1fr); /* STILL 3 ROWS */
-                grid-template-columns: 1fr; /* 1 column on mobile */
+                grid-template-rows: repeat(3, 90PXr); /* STILL 3 ROWS */
+                grid-template-columns: repeat(3,120px) /* 1 column on mobile */
                 height: calc(100vh - 70px);
             }
         }
@@ -247,7 +247,7 @@
     <!-- Header -->
     <header class="header">
         <a href="index.html">
-            <img src="https://via.placeholder.com/60x60/00d4ff/000000?text=LOGO" alt="Gaming Logo" class="logo">
+            <img src="https://github.com/RohitSharm23/unixgame.github.io/blob/main/Image/game1.png?raw=true" alt="Gaming Logo" class="logo">
         </a>
         <div class="search-box">
             <i class="search-icon">🔍</i>
@@ -405,23 +405,27 @@
         </div>
     </main>
 
-    <script>
-        // Search functionality
-        const searchInput = document.querySelector('.search-input');
-        const gameCards = document.querySelectorAll('.game-card');
+  <script>
+const searchInput = document.querySelector('.search-input');
+const gameCards = document.querySelectorAll('.game-card');
+const gamesGrid = document.querySelector('.games-grid');
 
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            gameCards.forEach(card => {
-                const title = card.querySelector('.game-title').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
-    </script>
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    gameCards.forEach((card, index) => {
+        const title = card.querySelector('.game-title').textContent.toLowerCase();
+        const shouldShow = title.includes(searchTerm) || searchTerm === '';
+        
+        if (shouldShow) {
+            card.style.display = 'block';
+            card.style.gridColumnStart = (index % 3) + 1;  // Column 1,2,3
+            card.style.gridRowStart = Math.floor(index / 3) + 1;  // Row 1,2,3
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+</script>
 </body>
 </html>
