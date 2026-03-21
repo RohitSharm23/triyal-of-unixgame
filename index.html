@@ -624,31 +624,62 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <nav>
-            <a href="#" class="logo">Unixgame</a>
-            
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Games.html</a></li>
-                <li><a href="#tournaments">Tournaments</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#about us">About.html</a></li>
-            </ul>
+    <nav>
+        <a href="#" class="logo">Unixgame</a>
+        
+        <!-- DESKTOP MENU -->
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="#tournaments">Tournaments</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
 
-            <div class="auth-buttons">
-                <a href="login.html" class="btn btn-secondary">Login</a>
-                <a href="signup.html" class="btn btn-primary">Sign Up</a>
-            </div>
+        <!-- DESKTOP AUTH BUTTONS -->
+        <div class="auth-buttons">
+            <a href="login.html" class="btn btn-secondary">Login</a>
+            <a href="signup.html" class="btn btn-primary">Sign Up</a>
+        </div>
 
-            <div class="mobile-menu" id="mobileMenu" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+        <!-- MOBILE HAMBURGER -->
+        <div class="mobile-menu" id="mobileMenu" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- ✅ MOBILE DROPDOWN - ALL YOUR BUTTONS HERE -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <!-- Main Navigation -->
+        <div class="mobile-nav-section">
+            <h4>📱 Navigation</h4>
+            <a href="#home" class="mobile-link">🏠 Home</a>
+            <a href="games.html" class="mobile-link">🎮 Games</a>
+            <a href="#tournaments" class="mobile-link">🏆 Tournaments</a>
+            <a href="#community" class="mobile-link">👥 Community</a>
+            <a href="about.html" class="mobile-link">ℹ️ About</a>
+        </div>
+
+        <!-- Auth Buttons -->
+        <div class="mobile-auth-section">
+            <h4>🔐 Account</h4>
+            <a href="login.html" class="mobile-btn btn-secondary">🔐 Login</a>
+            <a href="signup.html" class="mobile-btn btn-primary">📝 Sign Up</a>
+        </div>
+
+        <!-- Extra Pages -->
+        <div class="mobile-extra-section">
+            <h4>📋 More</h4>
+            <a href="privacy.html" class="mobile-link">🔒 Privacy Policy</a>
+            <a href="terms.html" class="mobile-link">📋 Terms</a>
+            <a href="contact.html" class="mobile-link">📧 Contact Us</a>
+            <a href="support.html" class="mobile-link">❓ Support</a>
+        </div>
+    </div>
+</header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -846,24 +877,34 @@
 
     <script>
         // ✅ MOBILE MENU - FULLY FIXED
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const authButtons = document.querySelector('.auth-buttons');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            
-            navLinks.classList.toggle('mobile-active');
-            authButtons.classList.toggle('mobile-active');
-            mobileMenu.classList.toggle('active');
-        }
+       // ✅ PERFECT MOBILE MENU - ALL BUTTONS
+function toggleMobileMenu() {
+    const dropdown = document.getElementById('mobileDropdown');
+    const hamburger = document.getElementById('mobileMenu');
+    
+    dropdown.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    
+    if (dropdown.classList.contains('active')) {
+        document.body.classList.add('mobile-menu-open');
+    } else {
+        document.body.classList.remove('mobile-menu-open');
+    }
+}
 
-        // Close mobile menu when clicking links
-        document.querySelectorAll('.nav-links a, .auth-buttons a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('mobile-active');
-                document.querySelector('.auth-buttons').classList.remove('mobile-active');
-                document.querySelector('.mobile-menu').classList.remove('active');
-            });
-        });
+// Close when clicking links
+document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('mobileDropdown');
+    const hamburger = document.getElementById('mobileMenu');
+    
+    if (e.target.closest('.mobile-link') || e.target.closest('.mobile-btn')) {
+        dropdown.classList.remove('active');
+        hamburger.classList.remove('active');
+        document.body.classList.remove('mobile-menu-open');
+    }
+});
+
+      
 
         // Developer Console Functions
         let currentTab = 'dashboard';
