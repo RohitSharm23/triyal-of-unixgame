@@ -10,17 +10,27 @@
             padding: 0;
             box-sizing: border-box;
         }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
+    background: linear-gradient(90deg, #0040ff, #00cfff, #0040ff);
+    background-size: 200% 100%;
+    animation: moveBg 8s linear infinite;
+}
+      
+     @keyframes moveBg {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
         /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: #0f172a;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
@@ -118,24 +128,22 @@
         }
 
         /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231a1a2e" width="1200" height="600"/><circle fill="%2300d4ff" opacity="0.1" cx="200" cy="150" r="100"/><circle fill="%23ff6b35" opacity="0.1" cx="1000" cy="400" r="150"/><rect fill="%230f3460" opacity="0.3" x="300" y="300" width="200" height="100"/></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 80px;
-        }
+    .hero {
+    background: transparent; /* 👈 THIS IS THE KEY FIX */
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+}
 
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00d4ff, #ffffff);
-            -webkit-background-clip: text;
+           background: transparent
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: glow 2s ease-in-out infinite alternate;
@@ -145,6 +153,11 @@
             from { filter: drop-shadow(0 0 20px #00d4ff); }
             to { filter: drop-shadow(0 0 30px #00d4ff); }
         }
+        @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
         .hero-content p {
             font-size: 1.3rem;
@@ -163,7 +176,7 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            color: #1a1a2e;
+            color: white;
         }
 
         .features-grid {
@@ -173,7 +186,8 @@
         }
 
         .feature-card {
-            background: white;
+            background: #0ea5e9;
+            color: white;
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
@@ -207,7 +221,8 @@
         }
 
         .developer-card {
-            background: rgba(255,255,255,0.95);
+            background: #1e293b;
+            color: white;
             backdrop-filter: blur(20px);
             padding: 3rem;
             border-radius: 20px;
@@ -221,14 +236,14 @@
         }
 
         .developer-card h2 {
-            color: #1a1a2e;
+            color: white
             font-size: 2.8rem;
             margin-bottom: 1rem;
             font-weight: bold;
         }
 
         .developer-card p {
-            color: #333;
+            color: white
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
             font-weight: 500;
