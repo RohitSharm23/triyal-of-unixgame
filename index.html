@@ -3,1067 +3,1114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unixgame -Play Free online games</title>
+    <title>Unixgame</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
 
-    background: linear-gradient(90deg, #0040ff, #00cfff, #0040ff);
-    background-size: 200% 100%;
-    animation: moveBg 8s linear infinite;
-}
-      
-     @keyframes moveBg {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
-        /* Header & Navigation */
-        header {
-            background: #0f172a;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        body{
+            font-family: Arial, sans-serif;
+            background:#0a0a0f;
+            color:white;
+            min-height:100vh;
+            overflow-x:hidden;
+            position:relative;
+         }
+         body::before,
+            body::after{
+            content:"";
+            position:fixed;
+            width:200%;
+            height:200%;
+            top:-50%;
+            left:-50%;
+            background:radial-gradient(circle at 30% 40%,rgba(0,212,255,0.35),transparent 40%),
+                       radial-gradient(circle at 70% 60%,rgba(140,0,255,0.30),transparent 40%),
+                      radial-gradient(circle at 50% 80%,rgba(0,255,200,0.25),transparent 40%);
+            animation:waveMove 20s linear infinite;
+            z-index:-1;
+         }
+        body::after{
+            animation-duration:30s;
+            opacity:0.7;
+         }
+      @keyframes waveMove{
+    0%{
+             transform:rotate(0deg) translate(0,0);
         }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+   50%{
+            transform:rotate(180deg) translate(50px,50px);
         }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #00d4ff;
-            text-decoration: none;
-            text-shadow: 0 0 10px #00d4ff;
+  100%{
+             transform:rotate(360deg) translate(0,0);
         }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
         }
+         
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #00d4ff;
-            text-shadow: 0 0 10px #00d4ff;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,212,255,0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid #00d4ff;
-        }
-
-        .btn-secondary:hover {
-            background: #00d4ff;
-            transform: translateY(-2px);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-    .hero {
-    background: transparent; /* 👈 THIS IS THE KEY FIX */
-
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    margin-top: 80px;
-}
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-           background: transparent
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 20px #00d4ff); }
-            to { filter: drop-shadow(0 0 30px #00d4ff); }
-        }
-        @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: #1e293b;
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-top: 4px solid #00d4ff;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* DEVELOPER CARD - CLEAN WHITE DESIGN (NO ORANGE) */
-        .developer-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            padding: 4rem 2rem;
-            margin: 4rem 2rem 0;
-            border-radius: 25px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-            position: relative;
-            border: 2px solid #00d4ff;
-        }
-
-        .developer-card {
-            background: #1e293b;
-            color: white;
-            backdrop-filter: blur(20px);
-            padding: 3rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid rgba(0,212,255,0.3);
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .developer-card h2 {
-            color: white
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-
-        .developer-card p {
-            color: white
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            font-weight: 500;
-            line-height: 1.6;
-        }
-
-        .dev-access-btn {
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
-            color: white;
-            padding: 1.2rem 3rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,212,255,0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .dev-access-btn:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,212,255,0.6);
-            background: linear-gradient(45deg, #0099cc, #00d4ff);
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 3rem 2rem 1rem;
-            margin-top: 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: #00d4ff;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: #00d4ff;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            color: #999;
-        }
-
-        /* Developer Console Styles (UNCHANGED) */
-        .dev-console {
-            display: none;
+        /* Header */
+        .header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 4000;
-            justify-content: center;
-            align-items: center;
+            right: 0;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-        }
-
-        .console-content {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 70%, #0f3460 100%);
-            padding: 0;
-            border-radius: 20px;
-            max-width: 95%;
-            max-height: 90vh;
-            width: 1200px;
-            height: 700px;
-            position: relative;
-            border: 3px solid #00d4ff;
-            box-shadow: 0 20px 60px rgba(0,212,255,0.3);
-            overflow: hidden;
-        }
-
-        .console-header {
-            background: rgba(0,212,255,0.1);
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(0,212,255,0.3);
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #00d4ff;
+            padding: 0 20px;
         }
 
-        .close-console {
-            font-size: 2rem;
+        .logo {
+            height: 60px;
+            width: 100px;
+            border-radius: 15px;
+            object-fit: contain;
             cursor: pointer;
-            color: #ff6b35;
+            transition: all 0.3s ease;
+            border: 2px solid #00d4ff;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #00d4ff;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 50px;
+            padding: 0 20px 0 50px;
+            border: 2px solid #333;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
-        .close-console:hover { 
-            transform: scale(1.2); 
-            color: #ff4757; 
+        .search-input::placeholder {
+            color: #aaa;
         }
 
-        .console-tabs {
-            display: flex;
-            background: rgba(0,212,255,0.1);
-            border-bottom: 1px solid rgba(0,212,255,0.2);
+        .search-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
 
-        .tab-btn {
-            flex: 1;
-            padding: 1rem;
-            border: none;
-            background: transparent;
-            color: #ccc;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #aaa;
         }
 
-        .tab-btn.active, .tab-btn:hover {
-            color: #00d4ff;
-            background: rgba(0,212,255,0.2);
+        /* Main Content */
+        .main-content {
+            padding-top: 80px;
+            width: 100vw;
+            padding-left: 0;
+            padding-right: 0;
         }
 
-        .tab-content {
-            display: none;
-            padding: 2rem;
-            height: calc(100% - 140px);
-            overflow-y: auto;
-        }
-
-        .tab-content.active { 
-            display: block; 
-        }
-
-        .status-grid {
+        /* Game Grid - EXACTLY 3 ROWS */
+        .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-rows:repeat(3 ,1fr);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            width: 100vw;
+            
+            padding: 0;
+            margin: 0;
         }
 
-        .status-card {
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            border-left: 4px solid #00d4ff;
-        }
-
-        .status-card.online { 
-            background: rgba(0,255,0,0.1); 
-            border-left-color: #00ff00; 
-        }
-
-        .status-card.warning { 
-            background: rgba(255,193,7,0.1); 
-            border-left-color: #ffc107; 
-        }
-
-        .status-card h3 { 
-            color: #00d4ff; 
-            margin-bottom: 0.5rem; 
-        }
-
-        .quick-actions, .admin-panel {
-            background: rgba(255,255,255,0.05);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(0,212,255,0.3);
-        }
-
-        .action-btn, .btn-danger, .btn-success, .btn-warning {
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 8px;
+        .game-card {
+            aspect-ratio: 4/ 3;
+            border-radius: 0;
+            overflow: hidden;
             cursor: pointer;
-            margin: 0.5rem 0.25rem 0.25rem 0;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-danger { 
-            background: #ff4757; 
-            color: white; 
-        }
-
-        .btn-success { 
-            background: #2ed573; 
-            color: white; 
-        }
-
-        .btn-warning { 
-            background: #ffa502; 
-            color: white; 
-        }
-
-        .action-btn:hover { 
-            transform: translateY(-2px); 
-            opacity: 0.9; 
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(0,212,255,0.1);
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #00d4ff;
-            margin-bottom: 0.25rem;
-        }
-
-        .debug-terminal {
+            transition: all 0.4s ease;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            width: 100%;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            background: #000;
-            border-radius: 10px;
-            padding: 1rem;
+            align-items: flex-end;
+            border-radius: 15px;
         }
 
-        .terminal-output {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            color: #00ff00;
-            background: #001100;
-            border-radius: 5px;
-            max-height: 300px;
+        .game-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
         }
 
-        .terminal-input {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: #001a00;
-            border-radius: 5px;
-            margin-top: 1rem;
-        }
-
-        #debugInput {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            outline: none;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: #00d4ff;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input, .form-group select {
+        .game-image {
             width: 100%;
-            padding: 0.75rem;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(0,212,255,0.5);
-            border-radius: 8px;
-            color: white;
-            margin-bottom: 0.5rem;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.4s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(1);
         }
 
-        .console-footer {
-            padding: 1.5rem;
-            border-top: 1px solid rgba(0,212,255,0.3);
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
+        .game-card:hover .game-image {
+            transform: scale(1.05);
         }
 
-        /* Responsive Design */
+        .game-overlay {
+            position: relative;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+            width: 100%;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .game-card:hover .game-overlay {
+            transform: translateY(0);
+        }
+
+        .game-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+            color:white;
+        }
+
+        /* Responsive - Always 3 rows */
+        @media (max-width: 1200px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
-            .nav-links, .auth-buttons {
-                display: none;
+            .header {
+                padding: 0 15px;
+                height: 70px;
             }
 
-            .mobile-menu {
-                display: flex;
+            .logo {
+                height: 50px;
+                width: 50px;
             }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .search-input {
+                height: 45px;
+                font-size: 14px;
+                padding-left: 45px;
             }
 
-            .hero-content p {
-                font-size: 1rem;
+            .main-content {
+                padding-top: 90px;          /* space b/w the game card and the search bar*/
             }
 
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .developer-section {
-                margin: 2rem 1rem 0;
-                padding: 2rem 1rem;
-            }
-
-            .developer-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .developer-card h2 {
-                font-size: 2rem;
-            }
-
-            .console-content {
-                width: 98%;
-                height: 95vh;
-                margin: 1rem;
+            .games-grid {
+                grid-template-rows: repeat(3, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                height: calc(100vh - 70px);
             }
         }
+
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-rows: repeat(40, 90px);            /* STILL 3 ROWS */
+                grid-template-columns: repeat(3,120px);        /* 1 column on mobile */
+                height: calc(100vh - 70px);
+            }
+        }
+
+        /* Hide extra cards when searching */
+        .game-card.hidden {
+            display: none;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+
+        .game-card:nth-child(1) { animation-delay: 0.1s; }
+        .game-card:nth-child(2) { animation-delay: 0.2s; }
+        .game-card:nth-child(3) { animation-delay: 0.3s; }
+        .game-card:nth-child(4) { animation-delay: 0.4s; }
+        .game-card:nth-child(5) { animation-delay: 0.5s; }
+        .game-card:nth-child(6) { animation-delay: 0.6s; }
+        .game-card:nth-child(7) { animation-delay: 0.7s; }
+        .game-card:nth-child(8) { animation-delay: 0.8s; }
+        .game-card:nth-child(9) { animation-delay: 0.9s; }
+
+        .left-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:60px;
+    height:100vh;
+    background:#06122a;
+    z-index:2000;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.menu-arrow{
+    margin-top:15px;
+    font-size:24px;
+    color:white;
+    cursor:pointer;
+}
+
+.icons{
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    font-size:22px;
+}
+
+.icons span{
+    color:white;
+    cursor:pointer;
+}
+
+/* SLIDE PANEL */
+.slide-menu{
+    position:absolute;
+    top:0;
+    left:60px;
+    width:260px;
+    height:100%;
+    background:rgba(20,20,30,0.95);
+    backdrop-filter:blur(10px);
+    padding:20px;
+    transform:translateX(-110%);
+    transition:0.3s ease;
+    border-radius:0 15px 15px 0;
+}
+
+/* OPEN STATE */
+.left-bar.open .slide-menu{
+    transform:translateX(0);
+}
+
+.slide-menu h3{
+    color:#9cff57;
+    margin-bottom:15px;
+}
+
+.slide-menu a{
+    display:block;
+    color:#cbd5e1;
+    text-decoration:none;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:5px;
+}
+
+.slide-menu a:hover{
+    background:#1479ff;
+    color:white;
+}
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="#" class="logo">Unixgame</a>
-            
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Games.html</a></li>
-                <li><a href="#tournaments">Tournaments</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#about us">About.html</a></li>
-            </ul>
+    <div class="left-bar" onmouseenter="openMenu()" onmouseleave="closeMenu()">
 
-            <div class="auth-buttons">
-                <a href="login.html" class="btn btn-secondary">Login</a>
-                <a href="signup.html" class="btn btn-primary">Sign Up</a>
-            </div>
+    <div class="menu-arrow">☰</div>
 
-            <div class="mobile-menu" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Welcome toUnixgame</h1>
-            <p>Welcome to UnixGame, your ultimate destination for playing free online games.
-            We bring you the best browser games for both mobile and desktop users.</p>
-            <div>
-                <a href="games.html" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">Explore Games</a>
-                <a href="games.html" class="btn btn-secondary" style="font-size: 1.2rem; padding: 1rem 2rem; margin-left: 1rem;">Start Playing</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <h2 class="section-title">Why Choose Unixgame?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🎮</div>
-                <h3>30+ Games</h3>
-                <p>From action to strategy, find your perfect game with our massive library.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3>Daily Tournaments</h3>
-                <p>Compete for real prizes and glory in our exciting tournaments.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👥</div>
-                <h3>Gaming Community</h3>
-                <p>Connect with gamers</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Zero Lag</h3>
-                <p>Global servers ensure smooth gameplay wherever you are.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CLEAN DEVELOPER CARD SECTION (NO ORANGE) -->
-    <section class="developer-section">
-        <div class="developer-card">
-            <h2>🔧 Developer Access</h2>
-            <p>Admin Console • Server Controls • Live Stats • Debug Tools</p>
-            <button class="dev-access-btn" onclick="openDevConsole()">
-                🚀 Open Developer Console
-            </button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Unixgame</h3>
-                <p>The ultimate destination for gamers. Play, compete, and connect.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="#games.html">Games</a>
-                <a href="#tournaments">Tournaments</a>
-                <a href="about.html">About Us</a>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
-            </div>
-            <div class="footer-section">
-                <h3>Support</h3>
-                <a href="support.html">Help Center</a>
-                <a href="mailto:support@unixgame.online">unixgame.online@gmail.com</a>
-              <!-----<a href="tel:+919876543210">+91 98765 43210</a>----->
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Unixgame. All rights reserved. | Built with passion for gamers</p>
-        </div>
-    </footer>
-
-    <!-- Developer Console Modal (UNCHANGED) -->
-    <div class="dev-console" id="devConsole">
-        <div class="console-content">
-            <div class="console-header">
-                <h2>🚀 Unixgame Developer Console v2.1.0</h2>
-                <span class="close-console" onclick="closeDevConsole()">&times;</span>
-            </div>
-            
-            <div class="console-tabs">
-                <button class="tab-btn active" onclick="switchTab(event, 'dashboard')">Dashboard</button>
-                <button class="tab-btn" onclick="switchTab(event, 'stats')">Stats</button>
-                <button class="tab-btn" onclick="switchTab(event, 'admin')">Admin</button>
-                <button class="tab-btn" onclick="switchTab(event, 'debug')">Debug</button>
-            </div>
-
-            <!-- Dashboard Tab -->
-            <div class="tab-content active" id="dashboard">
-                <div class="status-grid">
-                    <div class="status-card online">
-                        <h3>🟢 Server Status</h3>
-                        <p>All systems operational</p>
-                    </div>
-                    <div class="status-card online">
-                        <h3>👥 Active Players</h3>
-                        <p id="activePlayers">12,847</p>
-                    </div>
-                    <div class="status-card warning">
-                        <h3>⚡ Performance</h3>
-                        <p>98.7% uptime</p>
-                    </div>
-                    <div class="status-card online">
-                        <h3>💰 Revenue</h3>
-                        <p>$24.5K today</p>
-                    </div>
-                </div>
-                
-                <div class="quick-actions">
-                    <h3>Quick Actions</h3>
-                    <button class="action-btn" onclick="simulateMaintenance()">Maintenance Mode</button>
-                    <button class="action-btn btn-success" onclick="clearCache()">Clear Cache</button>
-                    <button class="action-btn btn-warning" onclick="restartServices()">Restart Services</button>
-                </div>
-            </div>
-
-            <!-- Stats Tab -->
-            <div class="tab-content" id="stats">
-                <canvas id="playerChart" width="400" height="200"></canvas>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="1.2">1.2M</span>
-                        <span>Total Users</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="847">847K</span>
-                        <span>Monthly Active</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="245">245K</span>
-                        <span>Daily Sessions</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Admin Tab -->
-            <div class="tab-content" id="admin">
-                <div class="admin-panel">
-                    <h3>👑 Admin Controls</h3>
-                    <div class="form-group">
-                        <label>Ban Player</label>
-                        <input type="text" id="banInput" placeholder="Player username">
-                        <button class="btn-danger" onclick="banPlayer()">🚫 Ban</button>
-                    </div>
-                    <div class="form-group">
-                        <label>Server Message</label>
-                        <input type="text" id="announceInput" placeholder="Global announcement">
-                        <button class="btn-success" onclick="sendAnnouncement()">📢 Send</button>
-                    </div>
-                    <div class="form-group">
-                        <label>Game Server</label>
-                        <select id="serverSelect">
-                            <option value="eu-west">EU-West</option>
-                            <option value="us-east">US-East</option>
-                            <option value="asia-sg">Asia-SG</option>
-                            <option value="india-mum">India-MUM</option>
-                        </select>
-                        <button class="btn-warning" onclick="restartServer()">🔄 Restart</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Debug Tab -->
-            <div class="tab-content" id="debug">
-                <div class="debug-terminal">
-                    <div class="terminal-output" id="terminalOutput">
-                        <div>[13:36:45] Unixgame v2.1.0 initialized</div>
-                        <div>[13:36:46] All 12 servers online</div>
-                        <div>[13:36:47] Database synced - 1.2M users</div>
-                    </div>
-                    <div class="terminal-input">
-                        <span>> </span>
-                        <input type="text" id="debugInput" placeholder="Enter command..." onkeypress="handleDebugInput(event)">
-                    </div>
-                </div>
-            </div>
-
-            <div class="console-footer">
-                <button class="btn btn-primary" onclick="closeDevConsole()">Close Console</button>
-                <a href="admin.html" class="btn btn-secondary" target="_blank">Full Admin Panel →</a>
-            </div>
-        </div>
+    <div class="icons">
+        <span>💚</span>
+        <span>🏷️</span>
+        <span>🎯</span>
+        <span>🧩</span>
+        <span>⚽</span>
+        <span>🚗</span>
+        <span>😂</span>
     </div>
 
-    <script>
-  // Mobile Menu Toggle
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    const authButtons = document.querySelector('.auth-buttons');
-    navLinks.classList.toggle('active');
-    authButtons.classList.toggle('active');
-}
+    <!-- SLIDE MENU -->
+    <div class="slide-menu" id="slideMenu">
+        <h3>My Games</h3>
 
-// Developer Console Functions
-let currentTab = 'dashboard';
+        <a href="#">🏷️ Arcade</a>
+        <a href="#">🎯 .io</a>
+        <a href="#">⚔️ Action</a>
+        <a href="#">🧩 Puzzle</a>
+        <a href="#">⚽ Sports</a>
+        <a href="#">♟️ Strategy</a>
+        <a href="#">🚗 Car</a>
+        <a href="#">😂 Funny</a>
+    </div>
 
-function openDevConsole() {
-    document.getElementById('devConsole').style.display = 'flex';
-    animateStats();
-    startTerminal();
-    drawChart();
-}
+</div>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html">
+            <img src="favicon.png" class="logo">
+        </a>
+        <div class="search-box">
+            <i class="search-icon">🔍</i>
+            <input type="text" class="search-input" placeholder="Search for games...">
+        </div>
+    </header>
 
-function closeDevConsole() {
-    document.getElementById('devConsole').style.display = 'none';
-}
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="games-grid">
 
-function switchTab(event, tabName) {
-    currentTab = tabName;
+            
+<!-0->      <a href="madkid/hot-wheels-race-off/" class="game-card">
+                <img src="madkid/hot-wheels-race-off/I[12].png" alt="Hot Wheels: Race Off" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Hot Wheels: Race Off</div>
+                </div>
+            </a>
 
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+<!-1->     <a href="gamemonitize/mini-golf-3d/" class="game-card">
+                <img src="gamemonitize/mini-golf-3d/mini-golf-3d.jpg" alt="Mini Golf 3D" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Mini Golf 3D</div>
+                </div>
+            </a>
 
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    document.getElementById(tabName).classList.add('active');
-}
+<!-2->       <a href="gamemonitize/parking-master-license-exam/" class="game-card">
+                <img src="gamemonitize/parking-master-license-exam/I[2].png" alt="Parking Master: License Exam" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Parking Master: License Exam</div>
+                </div>
+            </a>
 
-// Actions
-function simulateMaintenance() {
-    addNotification('🛠️ Maintenance mode activated for 5 minutes');
-}
+<!-3->     <a href="gamemonitize/stick-arena-stickmen/" class="game-card">
+                <img src="gamemonitize/stick-arena-stickmen/I[3].png" alt="Stick Arena: Stickmen" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Stick Arena: Stickmen</div>
+                </div>
+            </a>
 
-function clearCache() {
-    addNotification('🧹 Cache cleared successfully');
-}
+<!-4->     <a href="gamemonitize/car parkour challenge/" class="game-card">
+                <img src="gamemonitize/car parkour challenge/I[4].png" alt="Car Parkour Challenge" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Car Parkour Challenge</div>
+                </div>
+            </a>                    
 
-function restartServices() {
-    addNotification('🔄 Services restarted');
-}
+<!-5->     <a href="gamemonitize/car-climb-mountain/" class="game-card">
+                <img src="gamemonitize/car-climb-mountain/I[5].png" alt="Car Climb Mountain" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Car Climb Mountain</div>
+                </div>
+            </a>
 
-function banPlayer() {
-    const username = document.getElementById('banInput').value;
-    if (username) {
-        addNotification(`🚫 Player "${username}" banned successfully`);
-        document.getElementById('banInput').value = '';
-    }
-}
 
-function sendAnnouncement() {
-    const message = document.getElementById('announceInput').value;
-    if (message) {
-        addNotification(`📢 Announcement: "${message}"`);
-        document.getElementById('announceInput').value = '';
-    }
-}
+<!-6->     <a href="gamemonitize/tall-man-run-3d/" class="game-card">
+                <img src="gamemonitize/tall-man-run-3d/I[6].png" alt="Tall Man Run 3D" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Tall Man Run 3D</div>
+                </div>
+            </a>
 
-function restartServer() {
-    const server = document.getElementById('serverSelect').value;
-    addNotification(`🔄 Server ${server.toUpperCase()} restarted`);
-}
+<!-7->     <a href="gamemonitize/speed-car-race-madness/" class="game-card">
+                <img src="gamemonitize/speed-car-race-madness/I[7].png" alt="Speed Car Race Madness" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Speed Car Race Madness</div>
+                </div>
+            </a>
+<!-8->     <a href="gamemonitize/the-zombie-house/" class="game-card">
+                <img src="gamemonitize/the-zombie-house/I[8].png" alt="The Zombie House" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">The Zombie House</div>
+                </div>
+            </a>           
+<!-9->     <a href="gamemonitize/stick-war-saga/" class="game-card">
+                <img src="gamemonitize/stick-war-saga/stick-war-saga.jpg" alt="Stick War Saga" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Stick War Saga</div>
+                </div>
+            </a>           
+<!-10->     <a href="gamemonitize/epic-runner-parkour/" class="game-card">
+                <img src="gamemonitize/epic-runner-parkour/I[10].png" alt="Epic Runner Parkour" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Epic Runner Parkour</div>
+                </div>
+            </a>    
+<!-11->     <a href="gamemonitize/water-ball-sorting-puzzle/" class="game-card">
+                <img src="gamemonitize/water-ball-sorting-puzzle/I[11].png" alt="Water Ball Sorting Puzzle" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Water Ball Sorting Puzzle</div>
+                </div>
+            </a>        
+<!-12->     <a href="gamemonitize/knife-madness/" class="game-card">
+                <img src="gamemonitize/knife-madness/I[12].png" alt="Knife Madness" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Knife Madness</div>
+                </div>
+            </a>
+<!-13->     <a href="gamemonitize/mermaid-rescue/" class="game-card">
+                <img src="gamemonitize/mermaid-rescue/I[13].png" alt="Mermaid Rescue" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Mermaid Rescue</div>
+                </div>
+            </a>            
+<!-14->     <a href="gamemonitize/missile-escape-master/" class="game-card">
+                <img src="gamemonitize/missile-escape-master/I[14].png" alt="Missile Escape Master" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Missile Escape Master</div>
+                </div>
+            </a>  
+<!-15->     <a href="gamemonitize/stickman-prison-warriors/" class="game-card">
+                <img src="gamemonitize/stickman-prison-warriors/I[15].png" alt="Stickman Prison Warriors" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Stickman Prison Warriors</div>
+                </div>
+            </a>  
+ <!-16->     <a href="gamemonitize/subway-winter-vacation/" class="game-card">
+                <img src="gamemonitize/subway-winter-vacation/I[16].png" alt="Subway Winter Vacation" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Subway Winter Vacation</div>
+                </div>
+            </a>
+  <!-17->     <a href="gamemonitize/drop-stack-ball-game/" class="game-card">
+                <img src="gamemonitize/drop-stack-ball-game/I[17].png" alt="Drop Stack Ball Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Drop Stack Ball Game</div>
+                </div>
+            </a>
+  
+  <!-18->     <a href="gamemonitize/uno-party-card/" class="game-card">
+                <img src="gamemonitize/uno-party-card/I[18].png" alt="Uno Party Card" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Uno Party Card</div>
+                </div>
+            </a>
+  <!-19->     <a href="gamemonitize/vector-parkour/" class="game-card">
+                <img src="gamemonitize/vector-parkour/I[19].png" alt="Vector Parkour" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Vector Parkour</div>
+                </div>
+            </a>  
+  <!-20->     <a href="gamemonitize/temple-run-frozen-shadows/" class="game-card">
+                <img src="gamemonitize/temple-run-frozen-shadows/I[20].png" alt="Temple Run Frozen Shadows" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Temple Run Frozen Shadows</div>
+                </div>
+            </a>  
+  <!-21->     <a href="Kiz10/G001/" class="game-card">
+                <img src="Kiz10/G001/I[1].png" alt="Monster Truck Assault" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Monster Truck Assault</div>
+                </div>
+            </a> 
+  <!-22->     <a href="gamemonitize/battle-cars-monster-hunter/" class="game-card">
+                <img src="gamemonitize/battle-cars-monster-hunter/I[21].png" alt="Battle Cars: Monster Hunter" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Battle Cars: Monster Hunter</div>
+                </div>
+            </a>
+   <!-23->     <a href="GP/G001/" class="game-card">
+                <img src="GP/G001/I[1].png" alt="MR RACER - Car Racing" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">MR RACER - Car Racing</div>
+                </div>
+            </a>
+   <!-24->     <a href="gamemonitize/nut-bolt-screw-puzzle-game" class="game-card">
+                <img src="gamemonitize/nut-bolt-screw-puzzle-game/I[22].png" alt="Nut Bolt Screw Puzzle" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Nut Bolt Screw Puzzle</div>
+                </div>
+            </a> 
+    <!-25->     <a href="gamemonitize/block-blast-puzzle/" class="game-card">
+                <img src="gamemonitize/block-blast-puzzle//I[23].png" alt="Block Blast Puzzle" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Block Blast Puzzle</div>
+                </div>
+            </a>
+    <!-26->     <a href="gamemonitize/longdog/" class="game-card">
+                <img src="gamemonitize/longdog/I[24].png" alt="LongDog" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">LongDog</div>
+                </div>
+            </a>
+    <!-27->     <a href="gamemonitize/connectors/" class="game-card">
+                <img src="gamemonitize/connectors/I[25].png" alt="Connectors" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Connectors</div>
+                </div>
+            </a>
+    <!-28->     <a href="gamemonitize/word-search-universe 2/" class="game-card">
+                <img src="gamemonitize/word-search-universe 2/I[26].png" alt="Word Search Universe 2" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Word Search Universe 2</div>
+                </div>
+            </a>
+    <!-29->     <a href="gamemonitize/happy-bucket-challenge/" class="game-card">
+                <img src="gamemonitize/happy-bucket-challenge/I[27].png" alt="Happy Bucket Challenge" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Happy Bucket Challenge</div>
+                </div>
+            </a>
+    <!-30->     <a href="Kiz10/sunset-bike-racing/" class="game-card">
+                <img src="Kiz10/sunset-bike-racing/sunset-bike-racing.jpg" alt="Sunset Bike Racing" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Sunset Bike Racing</div>
+                </div>
+            </a>
+    <!-31->     <a href="madkid/grow-empire-rome/" class="game-card">
+                <img src="madkid/grow-empire-rome/I[4].png" alt="Grow Empire: Rome" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Grow Empire: Rome</div>
+                </div>
+            </a>
+    <!-32->     <a href="gamemonitize/tron-pieces/" class="game-card">
+                <img src="gamemonitize/tron-pieces/I[28].png" alt="Torn Pieces" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Torn Pieces</div>
+                </div>
+            </a>
+    <!-33->     <a href="madkid/ultimate-car-driving-simulator/" class="game-card">
+                <img src="madkid/ultimate-car-driving-simulator/I[1].png" alt="Ultimate Car Driving Simulator" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Ultimate Car Driving Simulator</div>
+                </div>
+            </a>
+    <!-34->     <a href="madkid/stickman-world-battle/" class="game-card">
+                <img src="madkid/stickman-world-battle/I[2].png" alt="Stickman World Battle" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Stickman World Battle"</div>
+                </div>
+            </a>
+    <!-35->     <a href="madkid/traffic-rider/" class="game-card">
+                <img src="madkid/traffic-rider/I[3].png" alt="Traffic Rider" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Traffic Rider</div>
+                </div>
+            </a>
+    <!-36->     <a href="madkid/offroad-outlaws/" class="game-card">
+                <img src="madkid/offroad-outlaws/I[5].png" alt="Offroad Outlaws" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Offroad Outlaws</div>
+                </div>
+            </a>
+    <!-37->     <a href="madkid/army-battle-simulator/" class="game-card">
+                <img src="madkid/army-battle-simulator/I[6].png" alt="Army Battle Simulator" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Army Battle Simulator</div>
+                </div>
+            </a>
+    <!-38->     <a href="madkid/hill-climb-racing-2-adventure-game/" class="game-card">
+                <img src="madkid/hill-climb-racing-2-adventure-game/I[7].png" alt="Hill Climb Racing 2: Adventure Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Hill Climb Racing 2: Adventure Game</div>
+                </div>
+            </a>
+    <!-39->     <a href="madkid/pepi-house-happy-family/" class="game-card">
+                <img src="madkid/pepi-house-happy-family/I[8].png" alt="Pepi House: Happy Family" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Pepi House: Happy Family</div>
+                </div>
+            </a>
+    <!-40->     <a href="madkid/world-cricket-championship-lte/" class="game-card">
+                <img src="madkid/world-cricket-championship-lte/I[9].png" alt="World Cricket Championship Lte" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">World Cricket Championship Lte</div>
+                </div>
+            </a>
+    <!-41->     <a href="madkid/stickman-destruction-3-heroes-ragdoll-game/" class="game-card">
+                <img src="madkid/stickman-destruction-3-heroes-ragdoll-game/I[10].png" alt="Stickman Destruction 3 Heroes: Ragdoll" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Stickman Destruction 3 Heroes: Ragdoll</div>
+                </div>
+            </a>
+    <!-42->     <a href="madkid/epic-battle-simulator-2/" class="game-card">
+                <img src="madkid/epic-battle-simulator-2/I[11].png" alt="Epic Battle Simulator 2" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Epic Battle Simulator 2</div>
+                </div>
+            </a>
+    <!-43->     <a href="tictactoe.html" class="game-card">
+                <img src="Screenshot 2026-02-15 152715.png" alt="Tic Tac Toe" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Tic Tac Toe</div>
+                </div>
+            </a>
+    <!-44->     <a href="Kiz10/subway-surfers-online/" class="game-card">
+                <img src="Kiz10/subway-surfers-online/I[4].png" alt="Subway Surfers Online" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Subway Surfers Online</div>
+                </div>
+            </a>
+    <!-45->     <a href="Kiz10/fury-tanks/" class="game-card">
+                <img src="Kiz10/fury-tanks/I[5].png" alt="Fury Tanks" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Fury Tanks</div>
+                </div>
+            </a>
+    <!-46->     <a href="Playgama/bubble-pop-legend/" class="game-card">
+                <img src="Playgama/bubble-pop-legend/I[1].png" alt="Bubble pop Legend" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Bubble pop Legend</div>
+                </div>
+            </a>
+    <!-47->     <a href="Playgama/jumping-bottle-3d/" class="game-card">
+                <img src="Playgama/jumping-bottle-3d/I[2].png" alt="Jumping Bottle 3D" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Jumping Bottle 3D</div>
+                </div>
+            </a>
+    <!-48->     <a href="Playgama/tile-valley/" class="game-card">
+                <img src="Playgama/tile-valley/I[3].png" alt="Tile Valley" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Tile Valley</div>
+                </div>
+            </a>
+    <!-49->     <a href="Playgama/snake-2077/" class="game-card">
+                <img src="Playgama/snake-2077/I[4].png" alt="Snake 2077: Glitch War" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Snake 2077: Glitch War</div>
+                </div>
+            </a>
+    <!-50->     <a href="madkid/gta-car-stunt-mega-ramp/" class="game-card">
+                <img src="madkid/gta-car-stunt-mega-ramp/I[12].png" alt="GTA Car Stunt: Mega Ramp" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">GTA Car Stunt: Mega Ramp</div>
+                </div>
+            </a>
+    <!-51->     <a href="Kiz10/dont-fall-online/" class="game-card">
+                <img src="Kiz10/dont-fall-online/I[6].png" alt="Don't Fall! Online - Casual Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Don't Fall! Online - Casual Game</div>
+                </div>
+            </a>
+    <!-52->     <a href="madkid/survivor-io/" class="game-card">
+                <img src="madkid/survivor-io/I[13].png" alt="Survivor.io" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Survivor.io</div>
+                </div>
+            </a>
+    <!-53->     <a href="Playgama/snake-2048/" class="game-card">
+                <img src="Playgama/snake-2048/I[5].png" alt="Snake 2048" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Snake 2048</div>
+                </div>
+            </a>
+    <!-54->     <a href="madkid/open-world-rpg-bald-knight/" class="game-card">
+                <img src="madkid/open-world-rpg-bald-knight/I[14].png" alt="Open World RPG: Bald Knight" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Open World RPG: Bald Knight</div>
+                </div>
+            </a>
+    <!-55->     <a href="madkid/dune-tiny-wings/" class="game-card">
+                <img src="madkid/dune-tiny-wings/I[15].png" alt="Dune Tiny Wings" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Dune Tiny Wings</div>
+                </div>
+            </a>
+    <!-56->     <a href="madkid/color-bump-3d-asmr-ball-game/" class="game-card">
+                <img src="madkid/color-bump-3d-asmr-ball-game/I[16].png" alt="Color Bump 3D: ASMR Ball Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Color Bump 3D: ASMR Ball Game</div>
+                </div>
+            </a>
+    <!-57->     <a href="madkid/construction-city-2/" class="game-card">
+                <img src="madkid/construction-city-2/I[17].png" alt="Construction City 2" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Construction City 2</div>
+                </div>
+            </a>
+    <!-58->     <a href="madkid/stickman-racer-survival-zombie/" class="game-card">
+                <img src="madkid/stickman-racer-survival-zombie/I[18].png" alt="Stickman Racer: Survival Zombie" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Stickman Racer: Survival Zombie</div>
+                </div>
+            </a>
+    <!-59->     <a href="Html5game/archery-world-tour/" class="game-card">
+                <img src="Html5game/archery-world-tour/I[1].png" alt="Archery World Toure" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Archery World Toure</div>
+                </div>
+            </a>
+    <!-60->     <a href="Playgama/hazmob-fps-online-shooter/" class="game-card">
+                <img src="Playgama/hazmob-fps-online-shooter/I[7].png" alt="Hazmob FPS: Online Shooter" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Hazmob FPS: Online Shooter</div>
+                </div>
+            </a>
+    <!-61->     <a href="Playgama/rise-of-the-dead/" class="game-card">
+                <img src="Playgama/rise-of-the-dead/I[8].png" alt="Rise of the dead" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Rise of the dead</div>
+                </div>
+            </a>
+    <!-62->     <a href="Playgama/basketball-stars/" class="game-card">
+                <img src="Playgama/basketball-stars/I[9].png" alt="Basketball Stars" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Basketball Stars</div>
+                </div>
+            </a>
+    <!-63->     <a href="Playgama/deadly-descent/" class="game-card">
+                <img src="Playgama/deadly-descent/I[10].png" alt="Deadly Descent" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Deadly Descent</div>
+                </div>
+            </a>
+    <!-64->     <a href="madkid/race-max-ultimate-racing-game/" class="game-card">
+                <img src="madkid/race-max-ultimate-racing-game/I[19].png" alt="Race Max: Ultimate Racing Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Race Max: Ultimate Racing Game</div>
+                </div>
+            </a>
+    <!-65->     <a href="gamemonitize/crazy-sea-battle/" class="game-card">
+                <img src="gamemonitize/crazy-sea-battle/crazy-sea-battle.png" alt="Crazy Sea Battle" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Crazy Sea Battle</div>
+                </div>
+            </a>
+    <!-66->     <a href="Kiz10/mega-ramp-car/" class="game-card">
+                <img src="Kiz10/mega-ramp-car/mega-ramp-car.png" alt="Mega Ramp Car - Car Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Mega Ramp Car - Car Game</div>
+                </div>
+            </a>
+    <!-67->     <a href="Kiz10/stickman-archer-the-wizard-hero/" class="game-card">
+                <img src="Kiz10/stickman-archer-the-wizard-hero/stickman-archer-the-wizard-hero.png" alt="Stickman Archer: The Wizard Hero - Archery Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Stickman Archer: The Wizard Hero </div>
+                </div>
+            </a>
+    <!-68->     <a href="Kiz10/pacific-dogfight/" class="game-card">
+                <img src="Kiz10/pacific-dogfight/pacific-dogfight.png" alt="Pacific Dogfight " class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Pacific Dogfight </div>
+                </div>
+            </a>
+    <!-69->     <a href="Playgama/zombie-derby/" class="game-card">
+                <img src="Playgama/zombie-derby/zombie-derby.png" alt="Zombie Derby" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Zombie Derby</div>
+                </div>
+            </a>
+    <!-70->     <a href="Playgama/pirates-merge-war-path/" class="game-card">
+                <img src="Playgama/pirates-merge-war-path/pirates-merge-war-path.png" alt="Pirates Merge: War Path" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Pirates Merge: War Path</div>
+                </div>
+            </a>
+    <!-71->     <a href="Playgama/car-crush-realistic-destruction/" class="game-card">
+                <img src="Playgama/car-crush-realistic-destruction/car-crush-realistic-destruction.png" alt="Car Crush: Realistic Destruction" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Car Crush: Realistic Destruction</div>
+                </div>
+            </a>
+    <!-72->     <a href="Playgama/sort-the-colored-hexagons/" class="game-card">
+                <img src="Playgama/sort-the-colored-hexagons/sort-the-colored-hexagons.png" alt="Sort The Colored Hexagons" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Sort The Colored Hexagons</div>
+                </div>
+            </a>
+    <!-73->     <a href="Playgama/gangster-island-crime-city/" class="game-card">
+                <img src="Playgama/gangster-island-crime-city/gangster-island-crime-city.png" alt="Gangsta Island: Crime City" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Gangsta Island: Crime City</div>
+                </div>
+            </a>
+    <!-74->     <a href="Playgama/good-sort-master/" class="game-card">
+                <img src="Playgama/good-sort-master/good-sort-master.png" alt="Good Sort Master: Triple Match" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Good Sort Master: Triple Match</div>
+                </div>
+            </a>
+    <!-75->     <a href="Playgama/ragdoll-crashtest-throw-and-break/" class="game-card">
+                <img src="Playgama/ragdoll-crashtest-throw-and-break/ragdoll-crashtest-throw-and-break.png" alt="Ragdoll Crash-Test" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Ragdoll Crash-Test</div>
+                </div>
+            </a>
+    <!-76->     <a href="Playgama/rooftop-run/" class="game-card">
+                <img src="Playgama/rooftop-run/rooftop-run.png" alt="Rooftop Run" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Rooftop Run</div>
+                </div>
+            </a>
+    <!-77->     <a href="Playgama/burger-life/" class="game-card">
+                <img src="Playgama/burger-life/burger-life.png" alt="Burger Life" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Burger Life</div>
+                </div>
+            </a>
+    <!-78->     <a href="Playgama/geometry-arrow-2/" class="game-card">
+                <img src="Playgama/geometry-arrow-2/geometry-arrow-2.png" alt="Geometry Arrow 2" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Geometry Arrow 2</div>
+                </div>
+            </a>
+    <!-79->     <a href="Playgama/obby-climb-and-slide/" class="game-card">
+                <img src="Playgama/obby-climb-and-slide/obby-climb-and-slide.png" alt="Obby: Climb and Slide" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Obby: Climb and Slide</div>
+                </div>
+            </a>
+    <!-80->     <a href="Playgama/chicken-merge/" class="game-card">
+                <img src="Playgama/chicken-merge/chicken-merge.png" alt="Chicken Merge" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Chicken Merge</div>
+                </div>
+            </a>
+    <!-81->     <a href="madkid/offroad-jeep-4x4-car-driving-simulator/" class="game-card">
+                <img src="madkid/offroad-jeep-4x4-car-driving-simulator/offroad-jeep-4x4-car-driving-simulator.png" alt="Mad Truck Challenge 4x4 Racing" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Mad Truck Challenge 4x4 Racing</div>
+                </div>
+            </a>
+    <!-82->     <a href="madkid/dr-panda-town-tales/" class="game-card">
+                <img src="madkid/dr-panda-town-tales/dr-panda-town-tales.png" alt="Dr. Panda Town Tales" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Dr. Panda Town Tales</div>
+                </div>
+            </a>
+    <!-83->     <a href="madkid/my-town-car-repair-mechanic/" class="game-card">
+                <img src="madkid/my-town-car-repair-mechanic/my-town-car-repair-mechanic.png" alt="My Town: Car Repair - Mechanic" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">My Town: Car Repair - Mechanic</div>
+                </div>
+            </a>
+    <!-84->     <a href="Playgama/Bubble Shooter: Tap & Pop/" class="game-card">
+                <img src="Playgama/Bubble Shooter: Tap & Pop/Bubble Shooter: Tap & Pop.png" alt="Bubble Shooter: Tap & Pop" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Bubble Shooter: Tap & Pop</div>
+                </div>
+            </a>
+    <!-85->     <a href="Playgama/weapon-upgrade/" class="game-card">
+                <img src="Playgama/weapon-upgrade/weapon-upgrade.png" alt="Weapon Upgrade" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Weapon Upgrade</div>
+                </div>
+            </a>
+    <!-86->     <a href="Playgama/piece-of-cake-merge--bake/"class="game-card">
+                <img src="Playgama/piece-of-cake-merge--bake/piece-of-cake-merge--bake.png" alt="Piece of Cake: Merge & Bake" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Piece of Cake: Merge & Bake</div>
+                </div>
+            </a>
+    <!-87->     <a href="madkid/rubik-s-cube-online-solver/" class="game-card">
+                <img src="madkid/rubik-s-cube-online-solver/rubik-s-cube-online-solver.png" alt="Rubik's Cube Online Solver" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Rubik's Cube Online Solver</div>
+                </div>
+            </a>
+    <!-88->     <a href="Playgama/hills-of-steel/" class="game-card">
+                <img src="Playgama/hills-of-steel/hills-of-steel.png" alt="Hills Of Steel" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Hills Of Steel</div>
+                </div>
+            </a>
+    <!-89->     <a href="Playgama/car-destruction-king/" class="game-card">
+                <img src="Playgama/car-destruction-king/car-destruction-king.png" alt="Car Destruction King" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Car Destruction King</div>
+                </div>
+            </a>
+    <!-90->     <a href="og/tower-building-game/" class="game-card">
+                <img src="og/tower-building-game/tower-building-game.png" alt="Tower Building Game" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Tower Building Game </div>
+                </div>
+            </a>
+    <!-91->     <a href="madkid/truck-simulator-usa-classic/" class="game-card">
+                <img src="madkid/truck-simulator-usa-classic/truck-simulator-usa-classic.png" alt="Truck Simulator USA : Classic" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Truck Simulator USA : Classic</div>
+                </div>
+            </a>
+    <!-92->     <a href="madkid/mmx-hill-dash/" class="game-card">
+                <img src="madkid/mmx-hill-dash/mmx-hill-dash.png" alt="MMX Hill Dash" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">MMX Hill Dash</div>
+                </div>
+            </a>
+    <!-93->     <a href="Kiz10/candy-crush/" class="game-card">
+                <img src="Kiz10/candy-crush/candy-crush.png" alt="Candy Crush" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Candy Crush</div>
+                </div>
+            </a>
+    <!-94->     <a href="Kiz10/kick-the-buddy/" class="game-card">
+                <img src="Kiz10/kick-the-buddy/kick-the-buddy.png" alt="Kick the Buddy" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Kick the Buddy</div>
+                </div>
+            </a>
+    <!-95->     <a href="Kiz10/max-speed/" class="game-card">
+                <img src="Kiz10/max-speed/max-speed.jpg" alt="Max Speed" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Max Speed</div>
+                </div>
+            </a>
+    <!-96->     <a href="Kiz10/granny-original/" class="game-card">
+                <img src="Kiz10/granny-original/granny-original.jpg" alt="Granny Original" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Granny Original</div>
+                </div>
+            </a>
+    <!-97->     <a href="GP/body-drop-3d/" class="game-card">
+                <img src="GP/body-drop-3d/body-drop-3d.png" alt="Body Drop 3D" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Body Drop 3D</div>
+                </div>
+            </a>
+    <!-98->     <a href="GP/strike-galaxy-attack/" class="game-card">
+                <img src="GP/strike-galaxy-attack/strike-galaxy-attack.png" alt="Strike Galaxy Attack" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Strike Galaxy Attack</div>
+                </div>
+            </a>
+    <!-99->     <a href="GP/4-colors-multiplayer/" class="game-card">
+                <img src="GP/4-colors-multiplayer/4-colors-multiplayer.jpg" alt="4 Colors Multiplayer" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">4 Colors Multiplayer</div>
+                </div>
+            </a>
+   <!-100->     <a href="Playgama/man-runner-2048/" class="game-card">
+                <img src="Playgama/man-runner-2048/man-runner-2048.png" alt="Man Runner 2048" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Man Runner 2048</div>
+                </div>
+            </a>
+    <!-101->     <a href="madkid/granny/" class="game-card">
+                <img src="madkid/granny/granny.jpg" alt="Granny8" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Granny</div>
+                </div>
+            </a>
+    <!-102->     <a href="Playgama/kingdom-defender-tower-defense/" class="game-card">
+                <img src="Playgama/kingdom-defender-tower-defense/kingdom-defender-tower-defense.jpg" alt="Kingdom Defender - Tower Defense" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Kingdom Defender - Tower Defense</div>
+                </div>
+            </a>
+    <!-103->     <a href="Playgama/moto-x3m/" class="game-card">
+                <img src="Playgama/moto-x3m/moto_x3m.jpg" alt="Moto X3M" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Moto X3M</div>
+                </div>
+            </a>
+    <!-104->     <a href="bestgames/happy-glass/" class="game-card">
+                <img src="bestgames/happy-glass/water-glass.jpg" alt=" Happy Glass" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Happy Glass</div>
+                </div>
+            </a>
+    <!-105->     <a href="bestgames/Rise-Up/" class="game-card">
+                <img src="bestgames/Rise-Up/Rise-Up.jpg" alt="Rise-Up" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">Rise-Up</div>
+                </div>
+            </a>
+  <!-- <!-101->     <a href="donttry/try-not/index.html" class="game-card">
+                <img src="" alt="try not" class="game-image">
+                <div class="game-overlay">
+                    <div class="game-title">try not </div>
+                </div>
+            </a> -->
+   
+  
 
-// Terminal
-function addNotification(message) {
-    const terminal = document.getElementById('terminalOutput');
-    const time = new Date().toTimeString().split(' ')[0];
-    terminal.innerHTML += `<div>[${time}] ${message}</div>`;
-    terminal.scrollTop = terminal.scrollHeight;
-}
+        </div>
+    </main>
 
-function handleDebugInput(event) {
-    if (event.key === 'Enter') {
-        const input = document.getElementById('debugInput');
-        const command = input.value;
+ <script>
+const searchInput = document.querySelector('.search-input');
+const gameCards = document.querySelectorAll('.game-card');
+const gamesGrid = document.querySelector('.games-grid');
 
-        addNotification(`> ${command}`);
+// Create "No Results" message
+const noResult = document.createElement("div");
+noResult.textContent = "No games found 😢";
+noResult.style.textAlign = "center";
+noResult.style.marginTop = "20px";
+noResult.style.fontSize = "18px";
+noResult.style.display = "none";
+document.querySelector(".main-content").appendChild(noResult);
 
-        if (command === 'status') {
-            addNotification('All systems operational');
-        } else if (command === 'users') {
-            addNotification('1,247,893 total users');
-        } else if (command === 'clear') {
-            document.getElementById('terminalOutput').innerHTML = '';
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    gameCards.forEach(card => {
+        const title = card.querySelector('.game-title').textContent.toLowerCase();
+
+        if (title.includes(searchTerm)) {
+            card.classList.remove("hidden");
+            visibleCount++;
         } else {
-            addNotification('Command not recognized');
-        }
-
-        input.value = '';
-    }
-}
-
-// Stats Animation
-function animateStats() {
-    const stats = document.querySelectorAll('.stat-number');
-
-    stats.forEach(stat => {
-        let targetText = stat.textContent;
-        let target = parseFloat(targetText.replace(/[KM]/g, ''));
-
-        if (targetText.includes('K')) target *= 1000;
-        if (targetText.includes('M')) target *= 1000000;
-
-        let current = 0;
-        const increment = target / 100;
-
-        const timer = setInterval(() => {
-            current += increment;
-
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-
-            let display = current;
-
-            if (targetText.includes('K')) display = (current / 1000).toFixed(1) + 'K';
-            else if (targetText.includes('M')) display = (current / 1000000).toFixed(1) + 'M';
-
-            stat.textContent = display;
-
-        }, 20);
-    });
-}
-
-// Terminal Auto Logs
-function startTerminal() {
-    setInterval(() => {
-        const logs = [
-            'Player matchmaking optimized',
-            'Anti-cheat updated',
-            'Tournament rewards sent',
-            'Server performance boosted'
-        ];
-
-        if (Math.random() > 0.7) {
-            addNotification(logs[Math.floor(Math.random() * logs.length)]);
-        }
-    }, 8000);
-}
-
-// Chart Animation
-function drawChart() {
-    const canvas = document.getElementById('playerChart');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    canvas.width = 500;
-    canvas.height = 250;
-
-    let frame = 0;
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.strokeStyle = '#00d4ff';
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-
-        for (let i = 0; i < 50; i++) {
-            let x = (i / 50) * canvas.width;
-            let y = Math.sin((i + frame) * 0.1) * 30 + canvas.height / 2;
-
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-        }
-
-        ctx.stroke();
-        frame += 2;
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
-
-// Close modal outside click
-window.onclick = function (event) {
-    const modal = document.getElementById('devConsole');
-    if (event.target === modal) {
-        closeDevConsole();
-    }
-};
-
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute('href'));
-
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
+            card.classList.add("hidden");
         }
     });
-});
 
-// Navbar Scroll Effect
-window.addEventListener('scroll', function () {
-    const header = document.querySelector('header');
-
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(26,26,46,0.95)';
-        header.style.backdropFilter = 'blur(10px)';
+    // Show "No Results" message
+    if (visibleCount === 0) {
+        noResult.style.display = "block";
     } else {
-        header.style.background = 'linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)';
-        header.style.backdropFilter = 'none';
+        noResult.style.display = "none";
     }
 });
 
-// Particle Effect
-function createParticles() {
-    const hero = document.querySelector('.hero');
+// RANDOMIZE GAME ORDER
+function shuffleGames() {
+    const grid = document.querySelector('.games-grid');
+    const cards = Array.from(grid.children);
 
-    for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-
-        particle.style.position = 'absolute';
-        particle.style.width = '4px';
-        particle.style.height = '4px';
-        particle.style.background = 'rgba(0,212,255,0.7)';
-        particle.style.borderRadius = '50%';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animation = `float ${Math.random() * 3 + 2}s infinite`;
-
-        hero.appendChild(particle);
+    for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
     }
+
+    cards.forEach(card => grid.appendChild(card));
 }
 
-// Animation CSS
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes float {
-    0% { transform: translateY(0px); opacity: 0.5; }
-    50% { transform: translateY(-20px); opacity: 1; }
-    100% { transform: translateY(0px); opacity: 0.5; }
-}`;
-document.head.appendChild(style);
+// Run shuffle when page loads
+window.addEventListener("load", shuffleGames);
 
-// Init
-createParticles();
-        
+</script>
+<script>
+function openMenu(){
+    document.querySelector(".left-bar").classList.add("open");
+}
+
+function closeMenu(){
+    document.querySelector(".left-bar").classList.remove("open");
+}
+</script>
+</body>
+</html>
