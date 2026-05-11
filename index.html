@@ -3,7 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unixgame</title>
+    <title>UnixGame - Play Free Online Games</title>
+    <!-- SEO -->
+<meta property="og:site_name" content="UnixGame">
+<meta name="description" content="Play the best free online games on UnixGame. Enjoy racing, action, puzzle, and arcade games instantly—no download, mobile & desktop supported.">
+
+<meta name="keywords" content="free online games, play games online, browser games, racing games, action games, puzzle games, arcade games, UnixGame">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<!-- Open Graph (for WhatsApp, Facebook preview) -->
+<meta property="og:title" content="UnixGame - Play Free Online Games">
+<meta property="og:description" content="Play the best free online games instantly. No download needed.">
+<meta property="og:image" content="https://unixgame.online/favicon.png">
+<meta property="og:type" content="website">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "UnixGame",
+  "url": "https://unixgame.online",
+  "logo": "https://unixgame.online/google-logo.jpg"
+}
+</script>
+<meta name="google-site-verification" content="YOUR_CODE">
+
+
+<!-- Google tag (gtag.js)  for google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZVSKT828L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9ZVSKT828L');
+</script>
+
+    
+
     <style>
         * {
             margin: 0;
@@ -56,7 +98,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 80px;
+            height: 70px;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
@@ -228,17 +270,20 @@
             .games-grid {
                 grid-template-rows: repeat(3, 1fr);
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                height: calc(100vh - 70px);
+                height: auto;
             }
         }
 
         @media (max-width: 480px) {
-            .games-grid {
-                grid-template-rows: repeat(40, 90px);            /* STILL 3 ROWS */
-                grid-template-columns: repeat(3,120px);        /* 1 column on mobile */
-                height: calc(100vh - 70px);
-            }
-        }
+    .games-grid {
+        grid-template-columns: repeat(3,120px);
+        grid-auto-rows: 90px;
+        grid-template-rows: none;
+        height: auto;
+        justify-content: center;
+    }
+}
+        
 
         /* Hide extra cards when searching */
         .game-card.hidden {
@@ -273,114 +318,203 @@
         .game-card:nth-child(8) { animation-delay: 0.8s; }
         .game-card:nth-child(9) { animation-delay: 0.9s; }
 
-        .left-bar{
+ /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+        .footer-section a {
+     color:white;
+}
+footer{
+    transition:0.2s ease;
+}
+
+/* SIDEBAR */
+
+.left-sidebar{
     position:fixed;
     top:0;
     left:0;
-    width:60px;
-    height:100vh;
-    background:#06122a;
-    z-index:2000;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
-.menu-arrow{
-    margin-top:15px;
-    font-size:24px;
-    color:white;
-    cursor:pointer;
-}
-
-.icons{
-    margin-top:30px;
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-    font-size:22px;
-}
-
-.icons span{
-    color:white;
-    cursor:pointer;
-}
-
-/* SLIDE PANEL */
-.slide-menu{
-    position:absolute;
-    top:0;
-    left:60px;
-    width:260px;
+    width:75px;
     height:100%;
-    background:rgba(20,20,30,0.95);
-    backdrop-filter:blur(10px);
-    padding:20px;
-    transform:translateX(-110%);
-    transition:0.3s ease;
-    border-radius:0 15px 15px 0;
+    background:#050505;
+    border-right:2px solid #00d4ff;
+    transition:0.4s ease;
+    overflow:hidden;
+    z-index:5000;
+    padding-top:15px;
 }
 
-/* OPEN STATE */
-.left-bar.open .slide-menu{
-    transform:translateX(0);
+/* EXPAND ON HOVER */
+
+.left-sidebar:hover{
+    width:260px;
 }
 
-.slide-menu h3{
-    color:#9cff57;
-    margin-bottom:15px;
+/* LOGO */
+
+.sidebar-logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:10px 18px;
+    margin-bottom:25px;
 }
 
-.slide-menu a{
-    display:block;
-    color:#cbd5e1;
-    text-decoration:none;
-    padding:10px;
-    border-radius:10px;
-    margin-bottom:5px;
+.sidebar-logo img{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    border:2px solid #00d4ff;
+    flex-shrink:0;
 }
 
-.slide-menu a:hover{
-    background:#1479ff;
+.sidebar-logo span{
     color:white;
+    font-size:22px;
+    font-weight:bold;
+    white-space:nowrap;
+    opacity:0;
+    transition:0.3s;
+}
+
+/* SHOW LOGO NAME ON HOVER */
+
+.left-sidebar:hover .sidebar-logo span{
+    opacity:1;
+}
+
+/* MENU LINKS */
+
+.left-sidebar a{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    text-decoration:none;
+    padding:16px 24px;
+    transition:0.3s;
+    white-space:nowrap;
+}
+
+/* ICON */
+
+.left-sidebar a i{
+    font-style:normal;
+    font-size:24px;
+    min-width:25px;
+}
+
+/* TEXT */
+
+.left-sidebar a span{
+    opacity:0;
+    transition:0.3s;
+    font-size:17px;
+}
+
+/* SHOW TEXT ON HOVER */
+
+.left-sidebar:hover a span{
+    opacity:1;
+}
+
+/* HOVER EFFECT */
+
+.left-sidebar a:hover{
+    background:#081018;
+    color:#00d4ff;
+    box-shadow: inset 3px 0 0 #00d4ff;
 }
     </style>
 </head>
 <body>
-    <div class="left-bar" onmouseenter="openMenu()" onmouseleave="closeMenu()">
 
-    <div class="menu-arrow">☰</div>
+<div class="left-sidebar">
 
-    <div class="icons">
-        <span>💚</span>
-        <span>🏷️</span>
-        <span>🎯</span>
-        <span>🧩</span>
-        <span>⚽</span>
-        <span>🚗</span>
-        <span>😂</span>
+    <!-- LOGO -->
+    <div class="sidebar-logo">
+        <img src="favicon.png" alt="UnixGame">
+        <span>UnixGame</span>
     </div>
 
-    <!-- SLIDE MENU -->
-    <div class="slide-menu" id="slideMenu">
-        <h3>My Games</h3>
+    <!-- MENU ITEMS -->
+    <a href="index.html">
+        <i>🏠</i>
+        <span>Home</span>
+    </a>
 
-        <a href="#">🏷️ Arcade</a>
-        <a href="#">🎯 .io</a>
-        <a href="#">⚔️ Action</a>
-        <a href="#">🧩 Puzzle</a>
-        <a href="#">⚽ Sports</a>
-        <a href="#">♟️ Strategy</a>
-        <a href="#">🚗 Car</a>
-        <a href="#">😂 Funny</a>
-    </div>
+    <a href="action.html">
+        <i>⚔️</i>
+        <span>Action Games</span>
+    </a>
+
+    <a href="racing.html">
+        <i>🏎️</i>
+        <span>Racing Games</span>
+    </a>
+
+    <a href="arcade.html">
+        <i>🕹️</i>
+        <span>Arcade Games</span>
+    </a>
+
+    <a href="puzzle.html">
+        <i>🧩</i>
+        <span>Puzzle Games</span>
+    </a>
+
+    <a href="horror.html">
+        <i>👻</i>
+        <span>Horror Games</span>
+    </a>
+
+    <a href="survival.html">
+        <i>🔥</i>
+        <span>Survival Games</span>
+    </a>
 
 </div>
+
     <!-- Header -->
     <header class="header">
-        <a href="index.html">
-            <img src="favicon.png" class="logo">
-        </a>
+        <img src="favicon.png" class="logo sidebar-logo" onclick="toggleSidebar()" alt="UnixGame Menu">
         <div class="search-box">
             <i class="search-icon">🔍</i>
             <input type="text" class="search-input" placeholder="Search for games...">
@@ -389,727 +523,92 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="games-grid">
+    <div class="games-grid" id="gamesGrid"></div>
+</main>
 
+
+        
+
+ <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Unixgame</h3>
+                <p>Play free online games instantly on UnixGame. Enjoy action, racing, arcade, and puzzle games on mobile and desktop without downloads..</p>
             
-<!-0->      <a href="madkid/hot-wheels-race-off/" class="game-card">
-                <img src="madkid/hot-wheels-race-off/I[12].png" alt="Hot Wheels: Race Off" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Hot Wheels: Race Off</div>
-                </div>
-            </a>
-
-<!-1->     <a href="gamemonitize/mini-golf-3d/" class="game-card">
-                <img src="gamemonitize/mini-golf-3d/mini-golf-3d.jpg" alt="Mini Golf 3D" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Mini Golf 3D</div>
-                </div>
-            </a>
-
-<!-2->       <a href="gamemonitize/parking-master-license-exam/" class="game-card">
-                <img src="gamemonitize/parking-master-license-exam/I[2].png" alt="Parking Master: License Exam" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Parking Master: License Exam</div>
-                </div>
-            </a>
-
-<!-3->     <a href="gamemonitize/stick-arena-stickmen/" class="game-card">
-                <img src="gamemonitize/stick-arena-stickmen/I[3].png" alt="Stick Arena: Stickmen" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Stick Arena: Stickmen</div>
-                </div>
-            </a>
-
-<!-4->     <a href="gamemonitize/car parkour challenge/" class="game-card">
-                <img src="gamemonitize/car parkour challenge/I[4].png" alt="Car Parkour Challenge" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Car Parkour Challenge</div>
-                </div>
-            </a>                    
-
-<!-5->     <a href="gamemonitize/car-climb-mountain/" class="game-card">
-                <img src="gamemonitize/car-climb-mountain/I[5].png" alt="Car Climb Mountain" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Car Climb Mountain</div>
-                </div>
-            </a>
-
-
-<!-6->     <a href="gamemonitize/tall-man-run-3d/" class="game-card">
-                <img src="gamemonitize/tall-man-run-3d/I[6].png" alt="Tall Man Run 3D" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Tall Man Run 3D</div>
-                </div>
-            </a>
-
-<!-7->     <a href="gamemonitize/speed-car-race-madness/" class="game-card">
-                <img src="gamemonitize/speed-car-race-madness/I[7].png" alt="Speed Car Race Madness" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Speed Car Race Madness</div>
-                </div>
-            </a>
-<!-8->     <a href="gamemonitize/the-zombie-house/" class="game-card">
-                <img src="gamemonitize/the-zombie-house/I[8].png" alt="The Zombie House" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">The Zombie House</div>
-                </div>
-            </a>           
-<!-9->     <a href="gamemonitize/stick-war-saga/" class="game-card">
-                <img src="gamemonitize/stick-war-saga/stick-war-saga.jpg" alt="Stick War Saga" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Stick War Saga</div>
-                </div>
-            </a>           
-<!-10->     <a href="gamemonitize/epic-runner-parkour/" class="game-card">
-                <img src="gamemonitize/epic-runner-parkour/I[10].png" alt="Epic Runner Parkour" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Epic Runner Parkour</div>
-                </div>
-            </a>    
-<!-11->     <a href="gamemonitize/water-ball-sorting-puzzle/" class="game-card">
-                <img src="gamemonitize/water-ball-sorting-puzzle/I[11].png" alt="Water Ball Sorting Puzzle" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Water Ball Sorting Puzzle</div>
-                </div>
-            </a>        
-<!-12->     <a href="gamemonitize/knife-madness/" class="game-card">
-                <img src="gamemonitize/knife-madness/I[12].png" alt="Knife Madness" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Knife Madness</div>
-                </div>
-            </a>
-<!-13->     <a href="gamemonitize/mermaid-rescue/" class="game-card">
-                <img src="gamemonitize/mermaid-rescue/I[13].png" alt="Mermaid Rescue" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Mermaid Rescue</div>
-                </div>
-            </a>            
-<!-14->     <a href="gamemonitize/missile-escape-master/" class="game-card">
-                <img src="gamemonitize/missile-escape-master/I[14].png" alt="Missile Escape Master" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Missile Escape Master</div>
-                </div>
-            </a>  
-<!-15->     <a href="gamemonitize/stickman-prison-warriors/" class="game-card">
-                <img src="gamemonitize/stickman-prison-warriors/I[15].png" alt="Stickman Prison Warriors" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Stickman Prison Warriors</div>
-                </div>
-            </a>  
- <!-16->     <a href="gamemonitize/subway-winter-vacation/" class="game-card">
-                <img src="gamemonitize/subway-winter-vacation/I[16].png" alt="Subway Winter Vacation" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Subway Winter Vacation</div>
-                </div>
-            </a>
-  <!-17->     <a href="gamemonitize/drop-stack-ball-game/" class="game-card">
-                <img src="gamemonitize/drop-stack-ball-game/I[17].png" alt="Drop Stack Ball Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Drop Stack Ball Game</div>
-                </div>
-            </a>
-  
-  <!-18->     <a href="gamemonitize/uno-party-card/" class="game-card">
-                <img src="gamemonitize/uno-party-card/I[18].png" alt="Uno Party Card" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Uno Party Card</div>
-                </div>
-            </a>
-  <!-19->     <a href="gamemonitize/vector-parkour/" class="game-card">
-                <img src="gamemonitize/vector-parkour/I[19].png" alt="Vector Parkour" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Vector Parkour</div>
-                </div>
-            </a>  
-  <!-20->     <a href="gamemonitize/temple-run-frozen-shadows/" class="game-card">
-                <img src="gamemonitize/temple-run-frozen-shadows/I[20].png" alt="Temple Run Frozen Shadows" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Temple Run Frozen Shadows</div>
-                </div>
-            </a>  
-  <!-21->     <a href="Kiz10/G001/" class="game-card">
-                <img src="Kiz10/G001/I[1].png" alt="Monster Truck Assault" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Monster Truck Assault</div>
-                </div>
-            </a> 
-  <!-22->     <a href="gamemonitize/battle-cars-monster-hunter/" class="game-card">
-                <img src="gamemonitize/battle-cars-monster-hunter/I[21].png" alt="Battle Cars: Monster Hunter" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Battle Cars: Monster Hunter</div>
-                </div>
-            </a>
-   <!-23->     <a href="GP/G001/" class="game-card">
-                <img src="GP/G001/I[1].png" alt="MR RACER - Car Racing" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">MR RACER - Car Racing</div>
-                </div>
-            </a>
-   <!-24->     <a href="gamemonitize/nut-bolt-screw-puzzle-game" class="game-card">
-                <img src="gamemonitize/nut-bolt-screw-puzzle-game/I[22].png" alt="Nut Bolt Screw Puzzle" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Nut Bolt Screw Puzzle</div>
-                </div>
-            </a> 
-    <!-25->     <a href="gamemonitize/block-blast-puzzle/" class="game-card">
-                <img src="gamemonitize/block-blast-puzzle//I[23].png" alt="Block Blast Puzzle" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Block Blast Puzzle</div>
-                </div>
-            </a>
-    <!-26->     <a href="gamemonitize/longdog/" class="game-card">
-                <img src="gamemonitize/longdog/I[24].png" alt="LongDog" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">LongDog</div>
-                </div>
-            </a>
-    <!-27->     <a href="gamemonitize/connectors/" class="game-card">
-                <img src="gamemonitize/connectors/I[25].png" alt="Connectors" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Connectors</div>
-                </div>
-            </a>
-    <!-28->     <a href="gamemonitize/word-search-universe 2/" class="game-card">
-                <img src="gamemonitize/word-search-universe 2/I[26].png" alt="Word Search Universe 2" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Word Search Universe 2</div>
-                </div>
-            </a>
-    <!-29->     <a href="gamemonitize/happy-bucket-challenge/" class="game-card">
-                <img src="gamemonitize/happy-bucket-challenge/I[27].png" alt="Happy Bucket Challenge" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Happy Bucket Challenge</div>
-                </div>
-            </a>
-    <!-30->     <a href="Kiz10/sunset-bike-racing/" class="game-card">
-                <img src="Kiz10/sunset-bike-racing/sunset-bike-racing.jpg" alt="Sunset Bike Racing" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Sunset Bike Racing</div>
-                </div>
-            </a>
-    <!-31->     <a href="madkid/grow-empire-rome/" class="game-card">
-                <img src="madkid/grow-empire-rome/I[4].png" alt="Grow Empire: Rome" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Grow Empire: Rome</div>
-                </div>
-            </a>
-    <!-32->     <a href="gamemonitize/tron-pieces/" class="game-card">
-                <img src="gamemonitize/tron-pieces/I[28].png" alt="Torn Pieces" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Torn Pieces</div>
-                </div>
-            </a>
-    <!-33->     <a href="madkid/ultimate-car-driving-simulator/" class="game-card">
-                <img src="madkid/ultimate-car-driving-simulator/I[1].png" alt="Ultimate Car Driving Simulator" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Ultimate Car Driving Simulator</div>
-                </div>
-            </a>
-    <!-34->     <a href="madkid/stickman-world-battle/" class="game-card">
-                <img src="madkid/stickman-world-battle/I[2].png" alt="Stickman World Battle" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Stickman World Battle"</div>
-                </div>
-            </a>
-    <!-35->     <a href="madkid/traffic-rider/" class="game-card">
-                <img src="madkid/traffic-rider/I[3].png" alt="Traffic Rider" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Traffic Rider</div>
-                </div>
-            </a>
-    <!-36->     <a href="madkid/offroad-outlaws/" class="game-card">
-                <img src="madkid/offroad-outlaws/I[5].png" alt="Offroad Outlaws" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Offroad Outlaws</div>
-                </div>
-            </a>
-    <!-37->     <a href="madkid/army-battle-simulator/" class="game-card">
-                <img src="madkid/army-battle-simulator/I[6].png" alt="Army Battle Simulator" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Army Battle Simulator</div>
-                </div>
-            </a>
-    <!-38->     <a href="madkid/hill-climb-racing-2-adventure-game/" class="game-card">
-                <img src="madkid/hill-climb-racing-2-adventure-game/I[7].png" alt="Hill Climb Racing 2: Adventure Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Hill Climb Racing 2: Adventure Game</div>
-                </div>
-            </a>
-    <!-39->     <a href="madkid/pepi-house-happy-family/" class="game-card">
-                <img src="madkid/pepi-house-happy-family/I[8].png" alt="Pepi House: Happy Family" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Pepi House: Happy Family</div>
-                </div>
-            </a>
-    <!-40->     <a href="madkid/world-cricket-championship-lte/" class="game-card">
-                <img src="madkid/world-cricket-championship-lte/I[9].png" alt="World Cricket Championship Lte" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">World Cricket Championship Lte</div>
-                </div>
-            </a>
-    <!-41->     <a href="madkid/stickman-destruction-3-heroes-ragdoll-game/" class="game-card">
-                <img src="madkid/stickman-destruction-3-heroes-ragdoll-game/I[10].png" alt="Stickman Destruction 3 Heroes: Ragdoll" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Stickman Destruction 3 Heroes: Ragdoll</div>
-                </div>
-            </a>
-    <!-42->     <a href="madkid/epic-battle-simulator-2/" class="game-card">
-                <img src="madkid/epic-battle-simulator-2/I[11].png" alt="Epic Battle Simulator 2" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Epic Battle Simulator 2</div>
-                </div>
-            </a>
-    <!-43->     <a href="tictactoe.html" class="game-card">
-                <img src="Screenshot 2026-02-15 152715.png" alt="Tic Tac Toe" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Tic Tac Toe</div>
-                </div>
-            </a>
-    <!-44->     <a href="Kiz10/subway-surfers-online/" class="game-card">
-                <img src="Kiz10/subway-surfers-online/I[4].png" alt="Subway Surfers Online" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Subway Surfers Online</div>
-                </div>
-            </a>
-    <!-45->     <a href="Kiz10/fury-tanks/" class="game-card">
-                <img src="Kiz10/fury-tanks/I[5].png" alt="Fury Tanks" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Fury Tanks</div>
-                </div>
-            </a>
-    <!-46->     <a href="Playgama/bubble-pop-legend/" class="game-card">
-                <img src="Playgama/bubble-pop-legend/I[1].png" alt="Bubble pop Legend" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Bubble pop Legend</div>
-                </div>
-            </a>
-    <!-47->     <a href="Playgama/jumping-bottle-3d/" class="game-card">
-                <img src="Playgama/jumping-bottle-3d/I[2].png" alt="Jumping Bottle 3D" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Jumping Bottle 3D</div>
-                </div>
-            </a>
-    <!-48->     <a href="Playgama/tile-valley/" class="game-card">
-                <img src="Playgama/tile-valley/I[3].png" alt="Tile Valley" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Tile Valley</div>
-                </div>
-            </a>
-    <!-49->     <a href="Playgama/snake-2077/" class="game-card">
-                <img src="Playgama/snake-2077/I[4].png" alt="Snake 2077: Glitch War" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Snake 2077: Glitch War</div>
-                </div>
-            </a>
-    <!-50->     <a href="madkid/gta-car-stunt-mega-ramp/" class="game-card">
-                <img src="madkid/gta-car-stunt-mega-ramp/I[12].png" alt="GTA Car Stunt: Mega Ramp" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">GTA Car Stunt: Mega Ramp</div>
-                </div>
-            </a>
-    <!-51->     <a href="Kiz10/dont-fall-online/" class="game-card">
-                <img src="Kiz10/dont-fall-online/I[6].png" alt="Don't Fall! Online - Casual Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Don't Fall! Online - Casual Game</div>
-                </div>
-            </a>
-    <!-52->     <a href="madkid/survivor-io/" class="game-card">
-                <img src="madkid/survivor-io/I[13].png" alt="Survivor.io" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Survivor.io</div>
-                </div>
-            </a>
-    <!-53->     <a href="Playgama/snake-2048/" class="game-card">
-                <img src="Playgama/snake-2048/I[5].png" alt="Snake 2048" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Snake 2048</div>
-                </div>
-            </a>
-    <!-54->     <a href="madkid/open-world-rpg-bald-knight/" class="game-card">
-                <img src="madkid/open-world-rpg-bald-knight/I[14].png" alt="Open World RPG: Bald Knight" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Open World RPG: Bald Knight</div>
-                </div>
-            </a>
-    <!-55->     <a href="madkid/dune-tiny-wings/" class="game-card">
-                <img src="madkid/dune-tiny-wings/I[15].png" alt="Dune Tiny Wings" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Dune Tiny Wings</div>
-                </div>
-            </a>
-    <!-56->     <a href="madkid/color-bump-3d-asmr-ball-game/" class="game-card">
-                <img src="madkid/color-bump-3d-asmr-ball-game/I[16].png" alt="Color Bump 3D: ASMR Ball Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Color Bump 3D: ASMR Ball Game</div>
-                </div>
-            </a>
-    <!-57->     <a href="madkid/construction-city-2/" class="game-card">
-                <img src="madkid/construction-city-2/I[17].png" alt="Construction City 2" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Construction City 2</div>
-                </div>
-            </a>
-    <!-58->     <a href="madkid/stickman-racer-survival-zombie/" class="game-card">
-                <img src="madkid/stickman-racer-survival-zombie/I[18].png" alt="Stickman Racer: Survival Zombie" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Stickman Racer: Survival Zombie</div>
-                </div>
-            </a>
-    <!-59->     <a href="Html5game/archery-world-tour/" class="game-card">
-                <img src="Html5game/archery-world-tour/I[1].png" alt="Archery World Toure" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Archery World Toure</div>
-                </div>
-            </a>
-    <!-60->     <a href="Playgama/hazmob-fps-online-shooter/" class="game-card">
-                <img src="Playgama/hazmob-fps-online-shooter/I[7].png" alt="Hazmob FPS: Online Shooter" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Hazmob FPS: Online Shooter</div>
-                </div>
-            </a>
-    <!-61->     <a href="Playgama/rise-of-the-dead/" class="game-card">
-                <img src="Playgama/rise-of-the-dead/I[8].png" alt="Rise of the dead" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Rise of the dead</div>
-                </div>
-            </a>
-    <!-62->     <a href="Playgama/basketball-stars/" class="game-card">
-                <img src="Playgama/basketball-stars/I[9].png" alt="Basketball Stars" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Basketball Stars</div>
-                </div>
-            </a>
-    <!-63->     <a href="Playgama/deadly-descent/" class="game-card">
-                <img src="Playgama/deadly-descent/I[10].png" alt="Deadly Descent" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Deadly Descent</div>
-                </div>
-            </a>
-    <!-64->     <a href="madkid/race-max-ultimate-racing-game/" class="game-card">
-                <img src="madkid/race-max-ultimate-racing-game/I[19].png" alt="Race Max: Ultimate Racing Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Race Max: Ultimate Racing Game</div>
-                </div>
-            </a>
-    <!-65->     <a href="gamemonitize/crazy-sea-battle/" class="game-card">
-                <img src="gamemonitize/crazy-sea-battle/crazy-sea-battle.png" alt="Crazy Sea Battle" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Crazy Sea Battle</div>
-                </div>
-            </a>
-    <!-66->     <a href="Kiz10/mega-ramp-car/" class="game-card">
-                <img src="Kiz10/mega-ramp-car/mega-ramp-car.png" alt="Mega Ramp Car - Car Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Mega Ramp Car - Car Game</div>
-                </div>
-            </a>
-    <!-67->     <a href="Kiz10/stickman-archer-the-wizard-hero/" class="game-card">
-                <img src="Kiz10/stickman-archer-the-wizard-hero/stickman-archer-the-wizard-hero.png" alt="Stickman Archer: The Wizard Hero - Archery Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Stickman Archer: The Wizard Hero </div>
-                </div>
-            </a>
-    <!-68->     <a href="Kiz10/pacific-dogfight/" class="game-card">
-                <img src="Kiz10/pacific-dogfight/pacific-dogfight.png" alt="Pacific Dogfight " class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Pacific Dogfight </div>
-                </div>
-            </a>
-    <!-69->     <a href="Playgama/zombie-derby/" class="game-card">
-                <img src="Playgama/zombie-derby/zombie-derby.png" alt="Zombie Derby" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Zombie Derby</div>
-                </div>
-            </a>
-    <!-70->     <a href="Playgama/pirates-merge-war-path/" class="game-card">
-                <img src="Playgama/pirates-merge-war-path/pirates-merge-war-path.png" alt="Pirates Merge: War Path" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Pirates Merge: War Path</div>
-                </div>
-            </a>
-    <!-71->     <a href="Playgama/car-crush-realistic-destruction/" class="game-card">
-                <img src="Playgama/car-crush-realistic-destruction/car-crush-realistic-destruction.png" alt="Car Crush: Realistic Destruction" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Car Crush: Realistic Destruction</div>
-                </div>
-            </a>
-    <!-72->     <a href="Playgama/sort-the-colored-hexagons/" class="game-card">
-                <img src="Playgama/sort-the-colored-hexagons/sort-the-colored-hexagons.png" alt="Sort The Colored Hexagons" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Sort The Colored Hexagons</div>
-                </div>
-            </a>
-    <!-73->     <a href="Playgama/gangster-island-crime-city/" class="game-card">
-                <img src="Playgama/gangster-island-crime-city/gangster-island-crime-city.png" alt="Gangsta Island: Crime City" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Gangsta Island: Crime City</div>
-                </div>
-            </a>
-    <!-74->     <a href="Playgama/good-sort-master/" class="game-card">
-                <img src="Playgama/good-sort-master/good-sort-master.png" alt="Good Sort Master: Triple Match" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Good Sort Master: Triple Match</div>
-                </div>
-            </a>
-    <!-75->     <a href="Playgama/ragdoll-crashtest-throw-and-break/" class="game-card">
-                <img src="Playgama/ragdoll-crashtest-throw-and-break/ragdoll-crashtest-throw-and-break.png" alt="Ragdoll Crash-Test" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Ragdoll Crash-Test</div>
-                </div>
-            </a>
-    <!-76->     <a href="Playgama/rooftop-run/" class="game-card">
-                <img src="Playgama/rooftop-run/rooftop-run.png" alt="Rooftop Run" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Rooftop Run</div>
-                </div>
-            </a>
-    <!-77->     <a href="Playgama/burger-life/" class="game-card">
-                <img src="Playgama/burger-life/burger-life.png" alt="Burger Life" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Burger Life</div>
-                </div>
-            </a>
-    <!-78->     <a href="Playgama/geometry-arrow-2/" class="game-card">
-                <img src="Playgama/geometry-arrow-2/geometry-arrow-2.png" alt="Geometry Arrow 2" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Geometry Arrow 2</div>
-                </div>
-            </a>
-    <!-79->     <a href="Playgama/obby-climb-and-slide/" class="game-card">
-                <img src="Playgama/obby-climb-and-slide/obby-climb-and-slide.png" alt="Obby: Climb and Slide" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Obby: Climb and Slide</div>
-                </div>
-            </a>
-    <!-80->     <a href="Playgama/chicken-merge/" class="game-card">
-                <img src="Playgama/chicken-merge/chicken-merge.png" alt="Chicken Merge" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Chicken Merge</div>
-                </div>
-            </a>
-    <!-81->     <a href="madkid/offroad-jeep-4x4-car-driving-simulator/" class="game-card">
-                <img src="madkid/offroad-jeep-4x4-car-driving-simulator/offroad-jeep-4x4-car-driving-simulator.png" alt="Mad Truck Challenge 4x4 Racing" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Mad Truck Challenge 4x4 Racing</div>
-                </div>
-            </a>
-    <!-82->     <a href="madkid/dr-panda-town-tales/" class="game-card">
-                <img src="madkid/dr-panda-town-tales/dr-panda-town-tales.png" alt="Dr. Panda Town Tales" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Dr. Panda Town Tales</div>
-                </div>
-            </a>
-    <!-83->     <a href="madkid/my-town-car-repair-mechanic/" class="game-card">
-                <img src="madkid/my-town-car-repair-mechanic/my-town-car-repair-mechanic.png" alt="My Town: Car Repair - Mechanic" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">My Town: Car Repair - Mechanic</div>
-                </div>
-            </a>
-    <!-84->     <a href="Playgama/Bubble Shooter: Tap & Pop/" class="game-card">
-                <img src="Playgama/Bubble Shooter: Tap & Pop/Bubble Shooter: Tap & Pop.png" alt="Bubble Shooter: Tap & Pop" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Bubble Shooter: Tap & Pop</div>
-                </div>
-            </a>
-    <!-85->     <a href="Playgama/weapon-upgrade/" class="game-card">
-                <img src="Playgama/weapon-upgrade/weapon-upgrade.png" alt="Weapon Upgrade" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Weapon Upgrade</div>
-                </div>
-            </a>
-    <!-86->     <a href="Playgama/piece-of-cake-merge--bake/"class="game-card">
-                <img src="Playgama/piece-of-cake-merge--bake/piece-of-cake-merge--bake.png" alt="Piece of Cake: Merge & Bake" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Piece of Cake: Merge & Bake</div>
-                </div>
-            </a>
-    <!-87->     <a href="madkid/rubik-s-cube-online-solver/" class="game-card">
-                <img src="madkid/rubik-s-cube-online-solver/rubik-s-cube-online-solver.png" alt="Rubik's Cube Online Solver" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Rubik's Cube Online Solver</div>
-                </div>
-            </a>
-    <!-88->     <a href="Playgama/hills-of-steel/" class="game-card">
-                <img src="Playgama/hills-of-steel/hills-of-steel.png" alt="Hills Of Steel" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Hills Of Steel</div>
-                </div>
-            </a>
-    <!-89->     <a href="Playgama/car-destruction-king/" class="game-card">
-                <img src="Playgama/car-destruction-king/car-destruction-king.png" alt="Car Destruction King" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Car Destruction King</div>
-                </div>
-            </a>
-    <!-90->     <a href="og/tower-building-game/" class="game-card">
-                <img src="og/tower-building-game/tower-building-game.png" alt="Tower Building Game" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Tower Building Game </div>
-                </div>
-            </a>
-    <!-91->     <a href="madkid/truck-simulator-usa-classic/" class="game-card">
-                <img src="madkid/truck-simulator-usa-classic/truck-simulator-usa-classic.png" alt="Truck Simulator USA : Classic" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Truck Simulator USA : Classic</div>
-                </div>
-            </a>
-    <!-92->     <a href="madkid/mmx-hill-dash/" class="game-card">
-                <img src="madkid/mmx-hill-dash/mmx-hill-dash.png" alt="MMX Hill Dash" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">MMX Hill Dash</div>
-                </div>
-            </a>
-    <!-93->     <a href="Kiz10/candy-crush/" class="game-card">
-                <img src="Kiz10/candy-crush/candy-crush.png" alt="Candy Crush" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Candy Crush</div>
-                </div>
-            </a>
-    <!-94->     <a href="Kiz10/kick-the-buddy/" class="game-card">
-                <img src="Kiz10/kick-the-buddy/kick-the-buddy.png" alt="Kick the Buddy" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Kick the Buddy</div>
-                </div>
-            </a>
-    <!-95->     <a href="Kiz10/max-speed/" class="game-card">
-                <img src="Kiz10/max-speed/max-speed.jpg" alt="Max Speed" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Max Speed</div>
-                </div>
-            </a>
-    <!-96->     <a href="Kiz10/granny-original/" class="game-card">
-                <img src="Kiz10/granny-original/granny-original.jpg" alt="Granny Original" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Granny Original</div>
-                </div>
-            </a>
-    <!-97->     <a href="GP/body-drop-3d/" class="game-card">
-                <img src="GP/body-drop-3d/body-drop-3d.png" alt="Body Drop 3D" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Body Drop 3D</div>
-                </div>
-            </a>
-    <!-98->     <a href="GP/strike-galaxy-attack/" class="game-card">
-                <img src="GP/strike-galaxy-attack/strike-galaxy-attack.png" alt="Strike Galaxy Attack" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Strike Galaxy Attack</div>
-                </div>
-            </a>
-    <!-99->     <a href="GP/4-colors-multiplayer/" class="game-card">
-                <img src="GP/4-colors-multiplayer/4-colors-multiplayer.jpg" alt="4 Colors Multiplayer" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">4 Colors Multiplayer</div>
-                </div>
-            </a>
-   <!-100->     <a href="Playgama/man-runner-2048/" class="game-card">
-                <img src="Playgama/man-runner-2048/man-runner-2048.png" alt="Man Runner 2048" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Man Runner 2048</div>
-                </div>
-            </a>
-    <!-101->     <a href="madkid/granny/" class="game-card">
-                <img src="madkid/granny/granny.jpg" alt="Granny8" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Granny</div>
-                </div>
-            </a>
-    <!-102->     <a href="Playgama/kingdom-defender-tower-defense/" class="game-card">
-                <img src="Playgama/kingdom-defender-tower-defense/kingdom-defender-tower-defense.jpg" alt="Kingdom Defender - Tower Defense" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Kingdom Defender - Tower Defense</div>
-                </div>
-            </a>
-    <!-103->     <a href="Playgama/moto-x3m/" class="game-card">
-                <img src="Playgama/moto-x3m/moto_x3m.jpg" alt="Moto X3M" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Moto X3M</div>
-                </div>
-            </a>
-    <!-104->     <a href="bestgames/happy-glass/" class="game-card">
-                <img src="bestgames/happy-glass/water-glass.jpg" alt=" Happy Glass" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Happy Glass</div>
-                </div>
-            </a>
-    <!-105->     <a href="bestgames/Rise-Up/" class="game-card">
-                <img src="bestgames/Rise-Up/Rise-Up.jpg" alt="Rise-Up" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">Rise-Up</div>
-                </div>
-            </a>
-  <!-- <!-101->     <a href="donttry/try-not/index.html" class="game-card">
-                <img src="" alt="try not" class="game-image">
-                <div class="game-overlay">
-                    <div class="game-title">try not </div>
-                </div>
-            </a> -->
-   
-  
-
+              
+            </div>
+            <div class="footer-section">
+                <h3>Category</h3>
+                <a href="action.html">Action games</a>
+                <a href="racing.html">Racing games</a>
+                <a href="arcade.html">Arcade games</a>
+                <a href="puzzle.html">Puzzle games</a>
+                <a href="survival.html">Survival games</a>
+                <a href="horror.html">Horror games</a>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Signup</a>
+                <a href="index.html">Games</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+<!--------------<a href="support.html">Help Center</a>----------------------------------------------------------------------------------->
+                <a href="mailto:support@unixgame.online">unixGame.online@gmail.com</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
         </div>
-    </main>
+        <div class="footer-bottom">
+            <p>&copy; 2026 UnixGame. All rights reserved. | Built with passion for gamers</p>
+        </div>
+    </footer>
 
- <script>
-const searchInput = document.querySelector('.search-input');
-const gameCards = document.querySelectorAll('.game-card');
-const gamesGrid = document.querySelector('.games-grid');
+ 
+<script src="/assets/games.js"></script>
 
-// Create "No Results" message
-const noResult = document.createElement("div");
-noResult.textContent = "No games found 😢";
-noResult.style.textAlign = "center";
-noResult.style.marginTop = "20px";
-noResult.style.fontSize = "18px";
-noResult.style.display = "none";
-document.querySelector(".main-content").appendChild(noResult);
+<script>
+const gamesGrid = document.getElementById("gamesGrid");
+const searchInput = document.querySelector(".search-input");
 
-searchInput.addEventListener('input', () => {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    let visibleCount = 0;
+function showGames(list) {
+    gamesGrid.innerHTML = "";
 
-    gameCards.forEach(card => {
-        const title = card.querySelector('.game-title').textContent.toLowerCase();
-
-        if (title.includes(searchTerm)) {
-            card.classList.remove("hidden");
-            visibleCount++;
-        } else {
-            card.classList.add("hidden");
-        }
+    list.forEach(game => {
+        gamesGrid.innerHTML += `
+            <a href="${game.page}" class="game-card">
+                <img src="${game.image}" alt="${game.title}" class="game-image" loading="lazy">
+                <div class="game-overlay">
+                    <div class="game-title">${game.title}</div>
+                </div>
+            </a>
+        `;
     });
-
-    // Show "No Results" message
-    if (visibleCount === 0) {
-        noResult.style.display = "block";
-    } else {
-        noResult.style.display = "none";
-    }
-});
-
-// RANDOMIZE GAME ORDER
-function shuffleGames() {
-    const grid = document.querySelector('.games-grid');
-    const cards = Array.from(grid.children);
-
-    for (let i = cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
-
-    cards.forEach(card => grid.appendChild(card));
 }
 
-// Run shuffle when page loads
-window.addEventListener("load", shuffleGames);
+// Random order every reload
+const shuffledGames = [...games].sort(() => Math.random() - 0.5);
 
+showGames(shuffledGames);
+
+searchInput.addEventListener("input", () => {
+
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    const filteredGames = shuffledGames.filter(game =>
+        game.title.toLowerCase().includes(searchTerm)
+    );
+
+    showGames(filteredGames);
+});
 </script>
 <script>
-function openMenu(){
-    document.querySelector(".left-bar").classList.add("open");
-}
-
-function closeMenu(){
-    document.querySelector(".left-bar").classList.remove("open");
+function toggleSidebar(){
+    document.getElementById("sidebar")
+    .classList.toggle("active");
 }
 </script>
 </body>
